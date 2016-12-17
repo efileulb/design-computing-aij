@@ -3,4 +3,4 @@ from rose import *  # plot1.pyと同一フォルダにあるrose.pyをインポ�
 hideturtle()
 rose_window_recursion(
     [[-100, -100], [100, -100], [100, 100], [-100, 100]], 0.25, 10)
-done()  # turtle.done()でイベント終了。
+done()  # turtle.done()でイベント終了する。
