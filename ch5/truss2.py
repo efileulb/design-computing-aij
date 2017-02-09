@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-# æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼ã®ãŸã‚ã«ä»¥ä¸‹ã®è¨­å®šãŒå¿…è¦
+# •¶šƒR[ƒhƒGƒ‰[‚ğ”ğ‚¯‚é‚½‚ß‚ÉˆÈ‰º‚Ìİ’è‚ª•K—v
 import io
 import sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
 import random
-import math  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«random,mathã‚’èª­ã¿è¾¼ã¿
+import math  # ƒ‚ƒWƒ…[ƒ‹random,math‚ğ“Ç‚İ‚İ
 from scipy import optimize
 E = 205000.0
 L = 2.0 * 1.0e+3
@@ -24,7 +23,7 @@ A0 = np.array([3000.0, 3000.0])
 def f(A):
     cons = g(A)
     return a1 * A[0] + a2 * A[1] + penalty * (max(-cons[0], 0) + max(-cons[1], 0) +
-                                              max(-cons[2], 0) + max(-cons[3], 0) + max(-cons[4], 0))
+           max(-cons[2], 0) + max(-cons[3], 0) + max(-cons[4], 0))
 
 
 def g(A):
@@ -33,45 +32,45 @@ def g(A):
     u2 = u_bar - (P1 + P2) * L / A[0] / E - P2 * L / A[1] / E
     return np.array([sigma1, sigma2, u2, A[0], A[1]])
 nstep, cool, shrink, scale, temp, delta, nb = 1000, 0.99, 0.99, 0.01, 1.0, 3000.0, 10
-# ã‚¹ãƒ†ãƒƒãƒ—æ•°,æ¸©åº¦ã‚’æ¸›ã‚‰ã™å‰²åˆ,æ¢ç´¢ç¯„å›²ã‚’ç¸®å°ã™ã‚‹å‰²åˆ,å¤‰æ•°ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°parameter,æ¸©åº¦ã®åˆæœŸåŒ–,æ¢ç´¢ç¯„å›²ã®åˆæœŸåŒ–,è¿‘å‚è§£ã®æ•°
-objopt = f(A0)  # ç›®çš„é–¢æ•°ã®æœ€é©å€¤ã®åˆæœŸåŒ–
-random.seed(1000)  # ä¹±æ•°ã®åˆæœŸåŒ–
-obj0 = f(A0)  # ç›®çš„é–¢æ•°ã®è¨ˆç®—
-# è¨­è¨ˆå¤‰æ•°ã¨ç›®çš„é–¢æ•°ã®å±¥æ­´ä¿å­˜ç”¨
+# ƒXƒeƒbƒv”,‰·“x‚ğŒ¸‚ç‚·Š„‡,’Tõ”ÍˆÍ‚ğk¬‚·‚éŠ„‡,•Ï”‚ÌƒXƒP[ƒŠƒ“ƒOparameter,‰·“x‚Ì‰Šú‰»,’Tõ”ÍˆÍ‚Ì‰Šú‰»,‹ß–T‰ğ‚Ì”
+objopt = f(A0)  # –Ú“IŠÖ”‚ÌÅ“K’l‚Ì‰Šú‰»
+random.seed(1000)  # —”‚Ì‰Šú‰»
+obj0 = f(A0)  # –Ú“IŠÖ”‚ÌŒvZ
+# İŒv•Ï”‚Æ–Ú“IŠÖ”‚Ì—š—ğ•Û‘¶—p
 A0_history = [A0[0]]
 A1_history = [A0[1]]
 f_history = [obj0]
 for k in range(nstep):
-    print('-------- ã‚¹ãƒ†ãƒƒãƒ—: ', k)
-    print('æ¸©åº¦', temp, 'æ¢ç´¢ç¯„å›²', delta, 'å¤‰æ•°', A0, 'ç›®çš„é–¢æ•°', obj0, 'æš«å®šå€¤', objopt)
-    # è¿‘å‚è§£ã®è©•ä¾¡
+    print('-------- ƒXƒeƒbƒv: ', k)
+    print('‰·“x', temp, '’Tõ”ÍˆÍ', delta, '•Ï”', A0, '–Ú“IŠÖ”', obj0, 'b’è’l', objopt)
+    # ‹ß–T‰ğ‚Ì•]‰¿
     obj1 = 1.0e10
     for n in range(nb):
         A = [A0[0] + (random.random() - 0.5) * delta,
              A0[1] + (random.random() - 0.5) * delta]
-        obj = f(A)  # ç›®çš„é–¢æ•°ã®è¨ˆç®—
-        if(obj < obj1):  # æœ€é©ãªè¿‘å‚è§£ã‚’é¸æŠ
+        obj = f(A)  # –Ú“IŠÖ”‚ÌŒvZ
+        if(obj < obj1):  # Å“K‚È‹ß–T‰ğ‚ğ‘I‘ğ
             obj1 = obj
             A1 = list(A)
-    print('æœ€é©è¿‘å‚è§£', A, 'ç›®çš„é–¢æ•°', obj1)
+    print('Å“K‹ß–T‰ğ', A, '–Ú“IŠÖ”', obj1)
     A0_history.append(A[0])
     A1_history.append(A[1])
     f_history.append(obj1)
-    diff = obj1 - obj0  # ç›®çš„é–¢æ•°ã®å¢—åˆ†
-    if(diff < 0):  # å¢—åˆ†ãŒè² ã®ã¨ãç›®çš„é–¢æ•°ã¨è§£ã‚’æ›´æ–°
+    diff = obj1 - obj0  # –Ú“IŠÖ”‚Ì‘•ª
+    if(diff < 0):  # ‘•ª‚ª•‰‚Ì‚Æ‚«–Ú“IŠÖ”‚Æ‰ğ‚ğXV
         obj0 = obj1
         A0 = A1
-    else:  # å¢—åˆ†ãŒ0ã¾ãŸã¯æ­£ã®ã¨ã
-        prob = math.exp(-diff / temp / scale)  # æ›´æ–°ç¢ºç‡ã®è¨ˆç®—
+    else:  # ‘•ª‚ª0‚Ü‚½‚Í³‚Ì‚Æ‚«
+        prob = math.exp(-diff / temp / scale)  # XVŠm—¦‚ÌŒvZ
         ran = random.random()
-        if(ran < prob):  # ä¹±æ•°ãŒæ›´æ–°ç¢ºç‡ã‚ˆã‚Šå°ã•ã„ã¨ãç›®çš„é–¢æ•°ã¨è§£ã‚’æ›´æ–°
+        if(ran < prob):  # —”‚ªXVŠm—¦‚æ‚è¬‚³‚¢‚Æ‚«–Ú“IŠÖ”‚Æ‰ğ‚ğXV
             obj0 = obj1
             A0 = A1
-    temp = temp * cool  # æ¸©åº¦ã®æ›´æ–°
-    delta = delta * shrink  # æ¢ç´¢ç¯„å›²ã®æ›´æ–°
-    if(obj1 < objopt):  # æœ€é©å€¤ã®æ›´æ–°
+    temp = temp * cool  # ‰·“x‚ÌXV
+    delta = delta * shrink  # ’Tõ”ÍˆÍ‚ÌXV
+    if(obj1 < objopt):  # Å“K’l‚ÌXV
         objopt = obj1
         optstep = k
         Aopt = A1
 print('==========================')
-print('æœ€é©ç›®çš„é–¢æ•°å€¤', objopt, 'ã‚¹ãƒ†ãƒƒãƒ—', optstep, 'å¤‰æ•°', Aopt)
+print('Å“K–Ú“IŠÖ”’l', objopt, 'ƒXƒeƒbƒv', optstep, '•Ï”', Aopt)

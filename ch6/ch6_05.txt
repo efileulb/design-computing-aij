@@ -1,8 +1,8 @@
 >>> from logic import *
 >>> kb2 = PropKB()
->>> kb2.tell(expr('P'))       # P ãŒ True ã«è¨­å®šã™ã‚‹
->>> kb2.ask(expr('Q'))        # Q ã®çœŸç†å€¤ã‚’ kb2 ã«èžã
-False                         # ã“ã®æ™‚ç‚¹ã§ã¯ Q ã¯ False ï¼ˆæœªå®šç¾©ï¼‰
->>> kb2.tell(expr('P ==> Q')) # P â†’ Q ãŒ True ã ã¨ kb2 ã«ä¼ãˆã‚‹
+>>> kb2.tell(expr('P'))       # P ‚ð True ‚ÉÝ’è‚·‚é
+>>> kb2.ask(expr('Q'))        # Q ‚Ì^—’l‚ð kb2 ‚É•·‚­
+False                         # ‚±‚ÌŽž“_‚Ä?‚Í Q ‚Í False i–¢’è‹`j
+>>> kb2.tell(expr('P ==> Q')) # P ¨ Q ‚ª True ‚¾‚Æ kb2 ‚É“`‚¦‚é
 >>> kb2.ask(expr('Q'))
 {}                            # MP

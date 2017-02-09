@@ -1,33 +1,33 @@
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-import csv  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«csvã®èª­ã¿è¾¼ã¿
-import matplotlib.pyplot as plt  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«matplotlibã®pyploté–¢æ•°ã‚’plt
-# ã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+import csv  # ƒ‚ƒWƒ…[ƒ‹csv‚Ì“Ç‚İ‚İ
+import matplotlib.pyplot as plt  # ƒ‚ƒWƒ…[ƒ‹matplotlib‚ÌpyplotŠÖ”‚ğplt
+# ‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
 
-reader = csv.reader(open('out.csv', 'r'))  # å…ˆã»ã©å‡ºåŠ›ã—ãŸoutput.csvã®èª­ã¿è¾¼ã¿
-f_history = []  # ç›®çš„é–¢æ•°ã®å±¥æ­´
-x1_history, x2_history = [], []  # è¨­è¨ˆå¤‰æ•°ã®å±¥æ­´
-for row in reader:  # 1è¡Œç›®ã¯ãƒ©ãƒ™ãƒ«è¡Œãªã®ã§èª­ã¿é£›ã°ã—
+reader = csv.reader(open('out.csv', 'r'))  # æ‚Ù‚Ço—Í‚µ‚½output.csv‚Ì“Ç‚İ‚İ
+f_history = []  # –Ú“IŠÖ”‚Ì—š—ğ
+x1_history, x2_history = [], []  # İŒv•Ï”‚Ì—š—ğ
+for row in reader:  # 1s–Ú‚Íƒ‰ƒxƒ‹s‚È‚Ì‚Å“Ç‚İ”ò‚Î‚µ
     break
 for row in reader:
-    f_history.append(float(row[1]))  # ç›®çš„é–¢æ•°ã®èª­ã¿è¾¼ã¿
-    x1_history.append(float(row[2]))  # è¨­è¨ˆå¤‰æ•°ã®èª­ã¿è¾¼ã¿
+    f_history.append(float(row[1]))  # –Ú“IŠÖ”‚Ì“Ç‚İ‚İ
+    x1_history.append(float(row[2]))  # İŒv•Ï”‚Ì“Ç‚İ‚İ
     x2_history.append(float(row[3]))
-plt.figure(figsize=(15, 8))  # ã‚°ãƒ©ãƒ•æç”»ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’æ¨ªç¸¦æ¯”15:8ã§ç”Ÿæˆ
-x1 = np.arange(1.25, 4.75, 0.1)  # 1.25ï½4.75ã¾ã§0.1åˆ»ã¿ã®ãƒ™ã‚¯ãƒˆãƒ«
-x2 = np.arange(0.25, 3.75, 0.1)  # 0.25ï½3.75ã¾ã§0.1åˆ»ã¿ã®ãƒ™ã‚¯ãƒˆãƒ«
-X1, X2 = np.meshgrid(x1, x2)  # x1,x2ã‚’çµ„ã¿åˆã‚ã›ãŸè¡Œåˆ—
+plt.figure(figsize=(15, 8))  # ƒOƒ‰ƒt•`‰æƒLƒƒƒ“ƒoƒX‚ğ‰¡c”ä15:8‚Å¶¬
+x1 = np.arange(1.25, 4.75, 0.1)  # 1.25`4.75‚Ü‚Å0.1‚İ‚ÌƒxƒNƒgƒ‹
+x2 = np.arange(0.25, 3.75, 0.1)  # 0.25`3.75‚Ü‚Å0.1‚İ‚ÌƒxƒNƒgƒ‹
+X1, X2 = np.meshgrid(x1, x2)  # x1,x2‚ğ‘g‚İ‡‚í‚¹‚½s—ñ
 f = np.vectorize(lambda x1, x2: 0.50 * (x1 - 3.0) **
-                 2 + (x2 - 2.0)**2)  # x1,x2ã‚’å¼•æ•°ã¨ã—ã¦
-# ç›®çš„é–¢æ•°ã‚’è¿”ã™é–¢æ•°
-plt.subplot(1, 2, 1)  # 1è¡Œç›®ã®2åˆ—ã®ä¸¦ã³ã®1åˆ—ç›®ã«ã‚°ãƒ©ãƒ•ã‚’ç”Ÿæˆ
-plt.xlabel('x1')  # æ°´å¹³æ–¹å‘ã®ãƒ©ãƒ™ãƒ«
-plt.ylabel('x2')  # é‰›ç›´æ–¹å‘ã®ãƒ©ãƒ™ãƒ«
-C = plt.contour(X1, X2, f(X1, X2), 20, colors='black')  # ç­‰é«˜ç·šãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
-plt.clabel(C, inline=1, fontsize=10)  # ç­‰é«˜ç·šå›³ç”Ÿæˆ
-plt.plot(x1_history, x2_history)  # ç›®çš„é–¢æ•°ã®æ¢ç´¢çµŒè·¯ç”Ÿæˆ
-plt.subplot(1, 2, 2)  # 1è¡Œç›®ã®2åˆ—ã®ä¸¦ã³ã®2åˆ—ç›®ã«ã‚°ãƒ©ãƒ•ã‚’ç”Ÿæˆ
-plt.xlabel('step')  # æ°´å¹³æ–¹å‘ã®ãƒ©ãƒ™ãƒ«
-plt.ylabel('f(x)')  # é‰›ç›´æ–¹å‘ã®ãƒ©ãƒ™ãƒ«
-plt.plot(f_history)  # ç›®çš„é–¢æ•°ã®å±¥æ­´å›³ã®ç”Ÿæˆ
-#(xæˆåˆ†ã‚’çœç•¥ã™ã‚Œã°è‡ªå‹•çš„ã«æ¨ªè»¸ã¯stepæ•°ã¨ãªã‚‹)
-plt.show()  # ã‚°ãƒ©ãƒ•ã‚’ç”»é¢ã«è¡¨ç¤ºã™ã‚‹
+                 2 + (x2 - 2.0)**2)  # x1,x2‚ğˆø”‚Æ‚µ‚Ä
+# –Ú“IŠÖ”‚ğ•Ô‚·ŠÖ”
+plt.subplot(1, 2, 1)  # 1s–Ú‚Ì2—ñ‚Ì•À‚Ñ‚Ì1—ñ–Ú‚ÉƒOƒ‰ƒt‚ğ¶¬
+plt.xlabel('x1')  # …•½•ûŒü‚Ìƒ‰ƒxƒ‹
+plt.ylabel('x2')  # ‰”’¼•ûŒü‚Ìƒ‰ƒxƒ‹
+C = plt.contour(X1, X2, f(X1, X2), 20, colors='black')  # “™‚üƒf[ƒ^¶¬
+plt.clabel(C, inline=1, fontsize=10)  # “™‚ü}¶¬
+plt.plot(x1_history, x2_history)  # –Ú“IŠÖ”‚Ì’TõŒo˜H¶¬
+plt.subplot(1, 2, 2)  # 1s–Ú‚Ì2—ñ‚Ì•À‚Ñ‚Ì2—ñ–Ú‚ÉƒOƒ‰ƒt‚ğ¶¬
+plt.xlabel('step')  # …•½•ûŒü‚Ìƒ‰ƒxƒ‹
+plt.ylabel('f(x)')  # ‰”’¼•ûŒü‚Ìƒ‰ƒxƒ‹
+plt.plot(f_history)  # –Ú“IŠÖ”‚Ì—š—ğ}‚Ì¶¬
+#(x¬•ª‚ğÈ—ª‚·‚ê‚Î©“®“I‚É‰¡²‚Ístep”‚Æ‚È‚é)
+plt.show()  # ƒOƒ‰ƒt‚ğ‰æ–Ê‚É•\¦‚·‚é

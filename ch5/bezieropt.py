@@ -1,45 +1,45 @@
 import bezier
-import csv  # bezier.pyãŠã‚ˆã³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«csvã®èª­ã¿è¾¼ã¿
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-import scipy as sp  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«scipyã‚’spã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-from scipy import optimize  # scipyå†…ã®optimizeãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã¿
-from scipy import integrate  # scipyå†…ã®integrateãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã¿
+import csv  # bezier.py‚¨‚æ‚Ñƒ‚ƒWƒ…[ƒ‹csv‚Ì“Ç‚İ‚İ
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+import scipy as sp  # ƒ‚ƒWƒ…[ƒ‹scipy‚ğsp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+from scipy import optimize  # scipy“à‚Ìoptimizeƒ‚ƒWƒ…[ƒ‹‚ğ“Ç‚İ‚İ
+from scipy import integrate  # scipy“à‚Ìintegrateƒ‚ƒWƒ…[ƒ‹‚ğ“Ç‚İ‚İ
 
 
-filename = 'input1'  # åˆ¶å¾¡ç‚¹åº§æ¨™æƒ…å ±ã‚’æ ¼ç´ã—ãŸå…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
-reader = csv.reader(open(filename + '.csv', 'r'))  # å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
-next(reader)  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+filename = 'input1'  # §Œä“_À•Wî•ñ‚ğŠi”[‚µ‚½“ü—Íƒtƒ@ƒCƒ‹–¼
+reader = csv.reader(open(filename + '.csv', 'r'))  # “ü—Íƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+next(reader)  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
 row = next(reader)[0:2]
-nu, nv = int(row[0]), int(row[1])  # u,væ–¹å‘ã®åˆ¶å¾¡ç‚¹æ•°
-next(reader)  # 1è¡Œèª­ã¿é£›ã°ã—
+nu, nv = int(row[0]), int(row[1])  # u,v•ûŒü‚Ì§Œä“_”
+next(reader)  # 1s“Ç‚İ”ò‚Î‚µ
 cp = []
 for row in reader:
-    cp.append([float(row[0]), float(row[1]), float(row[2])])  # åˆ¶å¾¡ç‚¹åº§æ¨™èª­ã¿è¾¼ã¿
+    cp.append([float(row[0]), float(row[1]), float(row[2])])  # §Œä“_À•W“Ç‚İ‚İ
 cp = np.array(cp)
 limit = [np.min(cp), np.max(cp), np.min(cp), np.max(cp),
-         np.min(cp), np.max(cp)]  # æç”»ç¯„å›²
+         np.min(cp), np.max(cp)]  # •`‰æ”ÍˆÍ
 bezier.plot_shape(nu, nv, cp, limit)
 
 
-def f(x):  # ç›®çš„é–¢æ•°ã®å®šç¾©
+def f(x):  # –Ú“IŠÖ”‚Ì’è‹`
     global cp, nu, nv
-    cp[:, 2] = x[:]  # åˆ¶å¾¡ç‚¹åº§æ¨™ã®æ›´æ–°
+    cp[:, 2] = x[:]  # §Œä“_À•W‚ÌXV
     return integrate.nquad(lambda u, v: bezier.EGF(nu, nv, u, v, cp), [[0, 1], [0, 1]],
-                           opts={'epsabs': 1.0e-6, 'epsrel': 1.0e-6})[0]  # æ•°å€¤ç©åˆ†
+                           opts={'epsabs': 1.0e-6, 'epsrel': 1.0e-6})[0]  # ”’lÏ•ª
 
 
 k = 0
-b = []  # è¨­è¨ˆå¤‰æ•°ã®ç¯„å›²ã®è¨­å®š
+b = []  # İŒv•Ï”‚Ì”ÍˆÍ‚Ìİ’è
 
 for i in range(nu):
     for j in range(nv):
         if i == 0 or i == nu - 1 or j == 0 or j == nv - 1:
-            b.append([cp[k, 2], cp[k, 2]])  # å¢ƒç•Œã¯å‹•ã‹ã•ãªã„
+            b.append([cp[k, 2], cp[k, 2]])  # ‹«ŠE‚Í“®‚©‚³‚È‚¢
         else:
             b.append([-1.0e+10, 1.0e+10])
         k += 1
 
 x = cp[:, 2]
 optimize.fmin_slsqp(f, x, fprime=None, bounds=b,
-                    iprint=2, full_output=True)  # é€æ¬¡äºŒæ¬¡è¨ˆç”»æ³•
-bezier.plot_shape(nu, nv, cp, limit)  # çµæœã®æç”»
+                    iprint=2, full_output=True)  # ’€Ÿ“ñŸŒv‰æ–@
+bezier.plot_shape(nu, nv, cp, limit)  # Œ‹‰Ê‚Ì•`‰æ

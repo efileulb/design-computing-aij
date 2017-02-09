@@ -1,3 +1,3 @@
->>> list(DG.nodes())   # DG ã«å«ã¾ã‚Œã‚‹ nodes ã‚’è¡¨ç¤ºã™ã‚‹
+>>> list(DG.nodes())   # DG ‚ÉŠÜ‚Ü‚ê‚é nodes ‚ð•\Ž¦‚·‚é
 
 ['villa_savoye', 'artifact', 'roof', 'archi', 'house', 'farnsworth', 'rain_cover']

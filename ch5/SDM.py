@@ -1,19 +1,19 @@
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-import csv  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«csvã®èª­ã¿è¾¼ã¿
-filename = 'out'  # å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
-writer = csv.writer(open(filename + '.csv', 'w'))  # å‡ºåŠ›ã™ã‚‹csvãƒ•ã‚¡ã‚¤ãƒ«ã®ç”Ÿæˆ
-writer.writerow(['step', 'f(x)', 'x1', 'x2'])  # csvãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ©ãƒ™ãƒ«ã®æ›¸ãè¾¼ã¿
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+import csv  # ƒ‚ƒWƒ…[ƒ‹csv‚Ì“Ç‚İ‚İ
+filename = 'out'  # o—Íƒtƒ@ƒCƒ‹–¼
+writer = csv.writer(open(filename + '.csv', 'w'))  # o—Í‚·‚écsvƒtƒ@ƒCƒ‹‚Ì¶¬
+writer.writerow(['step', 'f(x)', 'x1', 'x2'])  # csvƒtƒ@ƒCƒ‹‚Ö‚Ìƒ‰ƒxƒ‹‚Ì‘‚«‚İ
 
 
-def f(x):  # ç›®çš„é–¢æ•°ã®å®šç¾©
+def f(x):  # –Ú“IŠÖ”‚Ì’è‹`
     return 0.50 * (x[0] - 3.0)**2 + (x[1] - 2.0)**2
 
 
-def df(x):  # å‹¾é…ãƒ™ã‚¯ãƒˆãƒ«ã®å®šç¾©
+def df(x):  # Œù”zƒxƒNƒgƒ‹‚Ì’è‹`
     return np.array([x[0] - 3.0, 2.0 * (x[1] - 2.0)])
 
 
-def line_search(xk):  # 2åˆ†æ³•ã«ã‚ˆã‚Šãƒ©ã‚¤ãƒ³ã‚µãƒ¼ãƒã‚’è¡Œã†é–¢æ•°
+def line_search(xk):  # 2•ª–@‚É‚æ‚èƒ‰ƒCƒ“ƒT[ƒ`‚ğs‚¤ŠÖ”
     tau = 2.0
     xj1 = xk
     xj2 = xj1 - tau * df(xk)
@@ -27,11 +27,11 @@ def line_search(xk):  # 2åˆ†æ³•ã«ã‚ˆã‚Šãƒ©ã‚¤ãƒ³ã‚µãƒ¼ãƒã‚’è¡Œã†é–¢æ•°
     return xj1
 
 
-x = [4.0, 3.0]  # è¨­è¨ˆå¤‰æ•°ã®åˆæœŸå€¤
-t = 0.10  # Ï„ã®åˆæœŸå€¤
-itera = 1000  # æœ€é©åŒ–ã®æœ€å¤§åå¾©å›æ•°
-eps = 1.0e-10  # çµ‚äº†æ¡ä»¶ã®ãŸã‚ã®æŒ‡å®šå€¤
-for k in range(itera):  # ã“ã“ã‹ã‚‰æœ€æ€¥é™ä¸‹æ³•
+x = [4.0, 3.0]  # İŒv•Ï”‚Ì‰Šú’l
+t = 0.10  # ƒÑ‚Ì‰Šú’l
+itera = 1000  # Å“K‰»‚ÌÅ‘å”½•œ‰ñ”
+eps = 1.0e-10  # I—¹ğŒ‚Ì‚½‚ß‚Ìw’è’l
+for k in range(itera):  # ‚±‚±‚©‚çÅ‹}~‰º–@
     fx = f(x)
     writer.writerow([k, fx, x[0], x[1]])
     x_prev = x

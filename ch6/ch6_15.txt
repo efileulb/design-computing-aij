@@ -1,4 +1,4 @@
->>> DG.add_node('artifact')          # DG ã«ãƒŽãƒ¼ãƒ‰ artifact ã‚’åŠ ãˆã‚‹
+>>> DG.add_node('artifact')          # DG ‚Éƒm[ƒh artifact ‚ð‰Á‚¦‚é
 >>> DG.add_node('archi')
 >>> DG.add_node('roof')
 >>> DG.add_node('rain_cover')

@@ -1,18 +1,18 @@
 def inherit_get(DG, gparent, parent):
-    # parent ã®ä¸‹ã«ãƒªãƒ³ã‚¯ãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
+    # parent ‚Ì‰º‚ÉƒŠƒ“ƒN‚ª‚ ‚é‚©‚ğ”»’è
     if DG.successors(parent):
         for child in DG.successors(parent):
-            # child ã®ä¸‹ã«ãƒªãƒ³ã‚¯ãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
+            # child ‚Ì‰º‚ÉƒŠƒ“ƒN‚ª‚ ‚é‚©‚ğ”»’è
             if DG.successors(child):
-                # parent ã¨ child é–“ã®é–¢ä¿‚ãŒ is_a ã‹ã©ã†ã‹ã‚’åˆ¤å®š
+                # parent ‚Æ child ŠÔ‚ÌŠÖŒW‚ª is_a ‚©‚Ç‚¤‚©‚ğ”»’è
                 if DG.edge[parent][child]['type'] == 'is_a':
-                    # is_a ã®å ´åˆã¯ï¼Œã•ã‚‰ã«ãã®ãƒªãƒ³ã‚¯ã‚’ãŸã©ã‚‹
+                    # is_a ‚Ìê‡‚ÍC‚³‚ç‚É‚»‚ÌƒŠƒ“ƒN‚ğ‚½‚Ç‚é
                     inherit_get(DG, gparent, child)
                 else:
-                    # parent ã¨ child ã®é–¢ä¿‚ã‚’å‡ºåŠ›ã™ã‚‹
+                    # parent ‚Æ child ‚ÌŠÖŒW‚ğo—Í‚·‚é
                     print(gparent, DG.edge[parent][child]['type'], child)
             else:
-                # gparent ã¨ child ã®é–¢ä¿‚ã‚’å‡ºåŠ›ã™ã‚‹
+                # gparent ‚Æ child ‚ÌŠÖŒW‚ğo—Í‚·‚é
                 print(gparent, DG.edge[parent][child]['type'], child)
     else:
         print('No inheritance available.')

@@ -1,1 +1,18 @@
-#Ohsakidef read_data(file_name):    import csv    reader = csv.reader(open(file_name, 'r'))    X, Y = [], []    for row in reader:        X.append(row[0]), Y.append(row[1])    return X, Y  # ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™def draw_graph(X, Y, xmin, xmax, ymin, ymax, Lc, Ls, Lw, title, xlabel, ylabel):    import matplotlib.pyplot as plt    plt.xlim(xmin, xmax)  # Xã®ç¯„å›²ã®æŒ‡å®š    plt.ylim(ymin, ymax)  # Yã®ç¯„å›²ã®æŒ‡å®š    plt.title(title)  # ã‚°ãƒ©ãƒ•ã‚¿ã‚¤ãƒˆãƒ«    plt.xlabel(xlabel)  # Xè»¸ã‚¿ã‚¤ãƒˆãƒ«    plt.ylabel(ylabel)  # Yè»¸ã‚¿ã‚¤ãƒˆãƒ«    plt.plot(X, Y, color=Lc, linestyle=Ls, linewidth=Lw)  # ã‚°ãƒ©ãƒ•ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã«ä½œæˆ    plt.show()  # ã‚°ãƒ©ãƒ•ã®æç”»
+def read_data(file_name):
+    import csv
+    reader = csv.reader(open(file_name, 'r'))
+    X, Y = [], []
+    for row in reader:
+        X.append(row[0]), Y.append(row[1])
+    return X, Y  # ƒf[ƒ^‚ğ•Ô‚·
+
+
+def draw_graph(X, Y, xmin, xmax, ymin, ymax, Lc, Ls, Lw, title, xlabel, ylabel):
+    import matplotlib.pyplot as plt
+    plt.xlim(xmin, xmax)  # X‚Ì”ÍˆÍ‚Ìw’è
+    plt.ylim(ymin, ymax)  # Y‚Ì”ÍˆÍ‚Ìw’è
+    plt.title(title)  # ƒOƒ‰ƒtƒ^ƒCƒgƒ‹
+    plt.xlabel(xlabel)  # X²ƒ^ƒCƒgƒ‹
+    plt.ylabel(ylabel)  # Y²ƒ^ƒCƒgƒ‹
+    plt.plot(X, Y, color=Lc, linestyle=Ls, linewidth=Lw)  # ƒOƒ‰ƒt‚ğƒƒ‚ƒŠã‚Éì¬
+    plt.show()  # ƒOƒ‰ƒt‚Ì•`‰æ

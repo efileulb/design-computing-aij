@@ -1,1 +1,10 @@
-import module1  # ä½œæˆã—ãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« module1.pyã®èª­ã¿è¾¼ã¿file_name = 'data3.csv'  # ãƒ•ã‚¡ã‚¤ãƒ«åx, y = module1.read_data(file_name)  # module1å†…ã®é–¢æ•°read_dataã«ã‚ˆã‚Šãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—xmin, xmax, ymin, ymax = 0, 10, 0, 10  # æç”»ç¯„å›²lc, ls, lw = 'black', '-', 2.0  # æç”»ã‚ªãƒ—ã‚·ãƒ§ãƒ³title, xl, yl = 'LineGraph', 'X-Axis', 'Y-Axis'  # ã‚¿ã‚¤ãƒˆãƒ«ï¼Œãƒ©ãƒ™ãƒ«module1.draw_graph(x, y, xmin, xmax, ymin, ymax, lc,                   ls, lw, title, xl, yl)  # module1å†…ã®# é–¢æ•°draw_graphã«ã‚ˆã‚Šã‚°ãƒ©ãƒ•æç”»
+import module1  # ì¬‚µ‚½ƒ‚ƒWƒ…[ƒ‹ module1.py‚Ì“Ç‚İ‚İ
+
+file_name = 'data3.csv'  # ƒtƒ@ƒCƒ‹–¼
+x, y = module1.read_data(file_name)  # module1“à‚ÌŠÖ”read_data‚É‚æ‚èƒf[ƒ^‚ğæ“¾
+xmin, xmax, ymin, ymax = 0, 10, 0, 10  # •`‰æ”ÍˆÍ
+lc, ls, lw = 'black', '-', 2.0  # •`‰æƒIƒvƒVƒ‡ƒ“
+title, xl, yl = 'LineGraph', 'X-Axis', 'Y-Axis'  # ƒ^ƒCƒgƒ‹Cƒ‰ƒxƒ‹
+module1.draw_graph(x, y, xmin, xmax, ymin, ymax, lc,
+                   ls, lw, title, xl, yl)  # module1“à‚Ì
+# ŠÖ”draw_graph‚É‚æ‚èƒOƒ‰ƒt•`‰æ

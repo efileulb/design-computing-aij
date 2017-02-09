@@ -71,6 +71,6 @@ def I(n):
     turtle.pendown()
     turtle.forward(240.0 * scale)
     turtle.hideturtle()
-    turtle.mainloop()
+    turtle.done()
 
 I(3)

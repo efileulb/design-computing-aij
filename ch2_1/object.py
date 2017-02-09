@@ -1,5 +1,5 @@
-from rect import *  # rect.pyã®å†…å®¹ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹
-rect1 = Rectangle(200, 100)  # Rectangleã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆrect1ã‚’ç”Ÿæˆ
+from rect import *  # rect.py‚Ì“à—e‚ğƒCƒ“ƒ|[ƒg‚·‚é
+rect1 = Rectangle(200, 100)  # RectangleƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒgrect1‚ğ¶¬
 print(' Side lengths of rect1: ', rect1.dx, rect1.dy)
-aa = rect1.area()  # rect1ã®é¢ç©ã®è¨ˆç®—
+aa = rect1.cal_area()  # rect1‚Ì–ÊÏ‚ÌŒvZ
 print(' Area of rect1: ', aa)

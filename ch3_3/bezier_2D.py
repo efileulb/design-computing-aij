@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# coded by shin@Titech & DN-archi Co.,LTD 2016.07
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’èª­ã¿è¾¼ã¿
-import matplotlib.pyplot as plt  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«matplotlibã®pylabé–¢æ•°ã‚’èª­ã¿è¾¼ã¿
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğ“Ç‚İ‚İ
+import matplotlib.pyplot as plt  # ƒ‚ƒWƒ…[ƒ‹matplotlib‚ÌpylabŠÖ”‚ğ“Ç‚İ‚İ
 
 
-def bernstein(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å®šç¾©
+def bernstein(t, n, i):  # bernsteinŠî’êŠÖ”‚Ì’è‹`
     cn, ci, cni = 1.0, 1.0, 1.0
     for k in range(2, n, 1):
         cn = cn * k
@@ -20,7 +19,7 @@ def bernstein(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å®šç¾©
     return j
 
 
-def bezierplot(t, cp):  # bezieræ›²ç·šã®å®šç¾©
+def bezierplot(t, cp):  # bezier‹Èü‚Ì’è‹`
     n = len(cp)
     r = np.zeros([len(t), 2])
     for k in range(len(t)):
@@ -31,9 +30,9 @@ def bezierplot(t, cp):  # bezieræ›²ç·šã®å®šç¾©
             sum2 += cp[i - 1, 1] * bt
         r[k, :] = [sum1, sum2]
     return np.array(r)
-cp = np.array([[0, -2], [1, -3], [2, -2], [3, 2], [4, 2], [5, 0]])  # åˆ¶å¾¡ç‚¹åº§æ¨™
-t = np.arange(0, 1 + 0.01, 0.01)  # ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
-p = bezierplot(t, cp)  # bezieræ›²ç·šç”Ÿæˆ
+cp = np.array([[0, -2], [1, -3], [2, -2], [3, 2], [4, 2], [5, 0]])  # §Œä“_À•W
+t = np.arange(0, 1 + 0.01, 0.01)  # ƒpƒ‰ƒ[ƒ^¶¬
+p = bezierplot(t, cp)  # bezier‹Èü¶¬
 plt.figure()
 plt.plot(p[:, 0], p[:, 1])
 plt.plot(cp[:, 0], cp[:, 1], ls=':', marker='o')

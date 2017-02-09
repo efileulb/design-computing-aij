@@ -1,4 +1,4 @@
-# archi ã¨ artifact ã®é–¢ä¿‚ã¯ is_a ã§ã‚ã‚‹
+# archi ‚Æ artifact ‚ÌŠÖŒW‚Í is_a ‚Å‚ ‚é
 >>> DG.add_edge('archi', 'artifact', type='is_a')
 >>> DG.add_edge('house', 'archi', type='is_a')
 >>> DG.add_edge('farnsworth', 'house', type='is_a')

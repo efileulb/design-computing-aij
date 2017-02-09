@@ -1,6 +1,4 @@
 >>> kb3.ask(expr('Need(MyHouse,y)'))[y]
 StructuralCalc
 >>> kb3.ask(expr('Need(MyHouse,StructuralCalc)'))
-{v_9: MyHouse}       # MyHouse は Need(MyHouse,StructuralCalc) を満たす
-# {v_18: MyHouse}
-#になった。試行するごとにv_27, v_36と増えていく。
+{v_9: MyHouse}       # MyHouse �� Need(MyHouse,StructuralCalc) �𖞂���

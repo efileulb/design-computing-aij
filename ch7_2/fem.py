@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# coded by shin@Titech & DN-archi Co.,LTD 2016.07
 import numpy as np
 import csv
 import math
@@ -8,15 +6,15 @@ import math
 def input(fname):
     r, ijt, ijc = [], [], []
     reader = csv.reader(open(fname, 'r'))
-    for row in reader:  # ç¯€ç‚¹ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+    for row in reader:  # ß“_‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
         r.append([float(row[0]), float(row[1]), float(row[2])])
-    nod, r = len(r), np.array(r)  # ç¯€ç‚¹æ•°,ï½’ã®arrayå¤‰æ›
-    for row in reader:  # è¦ç´ ç¯€ç‚¹é–¢ä¿‚ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+    nod, r = len(r), np.array(r)  # ß“_”,‚’‚Ìarray•ÏŠ·
+    for row in reader:  # —v‘fß“_ŠÖŒW‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
@@ -24,46 +22,46 @@ def input(fname):
             ijc.append([int(row[0]), int(row[1])])
         else:
             ijt.append([int(row[0]), int(row[1])])
-    nelt, nelc = len(ijt), len(ijc)  # åœ§ç¸®/å¼•å¼µæã®æ•°
+    nelt, nelc = len(ijt), len(ijc)  # ˆ³k/ˆø’£Ş‚Ì”
     return r, ijt, ijc, nod, nelt, nelc
 
 
 def output(fname, r, nod, ijt, ijc, nelt, nelc, b, lam):
     writer = csv.writer(open(fname, 'w'))
-    writer.writerow(['X', 'Y', 'Z'])  # ã‚¿ã‚¤ãƒˆãƒ«è¡Œ
+    writer.writerow(['X', 'Y', 'Z'])  # ƒ^ƒCƒgƒ‹s
     [writer.writerow([r[i, 0], r[i, 1], r[i, 2]])
-     for i in range(nod)]  # ç¯€ç‚¹åº§æ¨™ã®æ›¸ãè¾¼ã¿
-    writer.writerow([])  # 1è¡Œã‚ã‘ã‚‹
-    writer.writerow(['I', 'J', 'CorT', 'Axial Force'])  # ã‚¿ã‚¤ãƒˆãƒ«è¡Œ
+     for i in range(nod)]  # ß“_À•W‚Ì‘‚«‚İ
+    writer.writerow([])  # 1s‚ ‚¯‚é
+    writer.writerow(['I', 'J', 'CorT', 'Axial Force'])  # ƒ^ƒCƒgƒ‹s
     [writer.writerow([ijc[e][0], ijc[e][1], 0, lam[e]])
-     for e in range(nelc)]  # åœ§ç¸®ææƒ…å ±ã®æ›¸ãè¾¼ã¿
+     for e in range(nelc)]  # ˆ³kŞî•ñ‚Ì‘‚«‚İ
     [writer.writerow([ijt[e][0], ijt[e][1], 1, b[e]])
-     for e in range(nelt)]  # å¼•å¼µææƒ…å ±ã®æ›¸ãè¾¼ã¿
+     for e in range(nelt)]  # ˆø’£Şî•ñ‚Ì‘‚«‚İ
 
 
 def length(r, ijt, ijc, nelt, nelc):
-    lght, lghc = [], []  # åœ§ç¸®/å¼•å¼µæã®é•·ã•ã®ãƒªã‚¹ãƒˆ
+    lght, lghc = [], []  # ˆ³k/ˆø’£Ş‚Ì’·‚³‚ÌƒŠƒXƒg
     for e in range(nelt):
         i, j = ijt[e][0], ijt[e][1]
         xl, yl, zl = r[i, 0] - r[j, 0], r[i, 1] - r[j, 1], r[i, 2] - r[j, 2]
-        lght.append(math.sqrt(xl**2 + yl**2 + zl**2))  # å¼•å¼µæã®éƒ¨æé•·è¨ˆç®—
+        lght.append(math.sqrt(xl**2 + yl**2 + zl**2))  # ˆø’£Ş‚Ì•”Ş’·ŒvZ
     for e in range(nelc):
         i, j = ijc[e][0], ijc[e][1]
         xl, yl, zl = r[i, 0] - r[j, 0], r[i, 1] - r[j, 1], r[i, 2] - r[j, 2]
-        lghc.append(math.sqrt(xl**2 + yl**2 + zl**2))  # åœ§ç¸®æã®éƒ¨æé•·è¨ˆç®—
-    return np.array(lght), np.array(lghc)  # ãƒªã‚¹ãƒˆâ†’arrayã«å¤‰æ›ã—ã¦è¦ç´ é•·ã•ã‚’è¿”ã™
+        lghc.append(math.sqrt(xl**2 + yl**2 + zl**2))  # ˆ³kŞ‚Ì•”Ş’·ŒvZ
+    return np.array(lght), np.array(lghc)  # ƒŠƒXƒg¨array‚É•ÏŠ·‚µ‚Ä—v‘f’·‚³‚ğ•Ô‚·
 
 
 def dlengthtc(r, ijt, ijc, nod, lght, lghc, nelt, nelc):
     nablaLt, nablaLc = np.zeros([nod * 3, nelt]), np.zeros([nod * 3, nelc])
-    for e in range(nelt):  # å¼•å¼µæã®é•·ã•ã®rã«é–¢ã™ã‚‹åå¾®åˆ†ã®è¨ˆç®—
+    for e in range(nelt):  # ˆø’£Ş‚Ì’·‚³‚Ìr‚ÉŠÖ‚·‚é•Î”÷•ª‚ÌŒvZ
         i, j = ijt[e][0], ijt[e][1]
         xl, yl, zl = r[i, 0] - r[j, 0], r[i, 1] - r[j, 1], r[i, 2] - r[j, 2]
         nablaLt[i, e], nablaLt[j, e] = xl / lght[e], -xl / lght[e]
         nablaLt[nod + i, e], nablaLt[nod + j, e] = yl / lght[e], -yl / lght[e]
         nablaLt[nod * 2 + i, e], nablaLt[nod *
                                          2 + j, e] = zl / lght[e], -zl / lght[e]
-    for e in range(nelc):  # åœ§ç¸®æã®é•·ã•ã®rã«é–¢ã™ã‚‹åå¾®åˆ†ã®è¨ˆç®—
+    for e in range(nelc):  # ˆ³kŞ‚Ì’·‚³‚Ìr‚ÉŠÖ‚·‚é•Î”÷•ª‚ÌŒvZ
         i, j = ijc[e][0], ijc[e][1]
         xl, yl, zl = r[i, 0] - r[j, 0], r[i, 1] - r[j, 1], r[i, 2] - r[j, 2]
         nablaLc[i, e], nablaLc[j, e] = xl / lghc[e], -xl / lghc[e]

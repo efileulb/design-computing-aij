@@ -1,6 +1,7 @@
-from turtle import *  # æç”»ç’°å¢ƒ turtle ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
-from rose import *  # plot1.pyã¨åŒä¸€ãƒ•ã‚©ãƒ«ãƒ€ã«ã‚ã‚‹rose.pyã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
+from turtle import *  # •`‰æŠÂ‹« turtle ‚ğƒCƒ“ƒ|[ƒg
+from rose import *  # plot1.py‚Æ“¯ˆêƒtƒHƒ‹ƒ_‚É‚ ‚érose.py‚ğƒCƒ“ƒ|[ƒg
 hideturtle()
 rose_window_recursion(
     [[-100, -100], [100, -100], [100, 100], [-100, 100]], 0.1, 40)
-mainloop()  # turtle.done()ã§ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€‚
+done()  # turtle‚ÌI—¹ˆ—
+

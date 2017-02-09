@@ -1,1 +1,5 @@
-import numpy as npa = np.array([[1, 2], [3, 4]])  # è¡Œåˆ—ã®å®šç¾©b = np.array([5, 11])  # ãƒ™ã‚¯ãƒˆãƒ«ã®å®šç¾©x = np.linalg.solve(a, b)  # é€£ç«‹1æ¬¡æ–¹ç¨‹å¼ã®è§£print(x)  # [ 1.  2.]
+import numpy as np
+a = np.array([[1, 2], [3, 4]])  # s—ñ‚Ì’è‹`
+b = np.array([5, 11])  # ƒxƒNƒgƒ‹‚Ì’è‹`
+x = np.linalg.solve(a, b)  # ˜A—§1Ÿ•û’ö®‚Ì‰ğ
+print(x)

@@ -1,39 +1,37 @@
-# -*- coding: utf-8 -*-
-
 import copy
 import math
 import bpy
 
-def make_path(c,e): # è¾ºe ã‚’ãƒ‘ã‚¹c ã«è¿½åŠ 
+def make_path(c,e): # •Óe ‚ğƒpƒXc ‚É’Ç‰Á
     c.append(e)
 
-def search(a,e,i,m,comp,c,n): # è¿½åŠ ã™ã‚‹è¾ºã®æ¢ç´¢
-    if len(e)==n-1:# å…¨åŸŸæœ¨ã®è¾ºã®æ•°ã¯(é ‚ç‚¹æ•°)-1ãªã®ã§è¾ºã®æ•°ãŒn-1ã¨ãªã‚Œã°å‡ºåŠ›ã™ã‚‹
+def search(a,e,i,m,comp,c,n): # ’Ç‰Á‚·‚é•Ó‚Ì’Tõ
+    if len(e)==n-1:# ‘Sˆæ–Ø‚Ì•Ó‚Ì”‚Í(’¸“_”)-1‚È‚Ì‚Å•Ó‚Ì”‚ªn-1‚Æ‚È‚ê‚Îo—Í‚·‚é
         b=copy.deepcopy(e)
         make_path(c,b)
     for j in range(i,m):
         a_0=a[j][0]#head
         a_1=a[j][1]#tail
-        if comp[a_0]!=comp[a_1]:# ãƒãƒƒã‚¯ãƒˆãƒ©ãƒƒã‚¯æ³•ã«ã‚ˆã‚Šå…¨åŸŸæœ¨ã‚’æ¢ç´¢
+        if comp[a_0]!=comp[a_1]:# ƒoƒbƒNƒgƒ‰ƒbƒN–@‚É‚æ‚è‘Sˆæ–Ø‚ğ’Tõ
             comp2=copy.deepcopy(comp)
             e.append(j)
-            t=min(comp[a_0],comp[a_1])# é€£çµæˆåˆ†ç•ªå·ã®æœ€å°å€¤
-            s=max(comp[a_0],comp[a_1])# é€£çµæˆåˆ†ç•ªå·ã®æœ€å¤§å€¤
-            for k in range(len(comp)):# æœ€å¤§å€¤ã‚’æœ€å°å€¤ã§ç½®ãæ›ãˆã‚‹
+            t=min(comp[a_0],comp[a_1])# ˜AŒ‹¬•ª”Ô†‚ÌÅ¬’l
+            s=max(comp[a_0],comp[a_1])# ˜AŒ‹¬•ª”Ô†‚ÌÅ‘å’l
+            for k in range(len(comp)):# Å‘å’l‚ğÅ¬’l‚Å’u‚«Š·‚¦‚é
                 if comp[k]==s:
                     comp[k]=t
             search(a,e,j+1,m,comp,c,n)
             comp=comp2
             e.pop()
 
-def make_edges(c,a,d,n): # æç”»ã®ãŸã‚ã®è¾ºãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
+def make_edges(c,a,d,n): # •`‰æ‚Ì‚½‚ß‚Ì•Óƒf[ƒ^‚Ìì¬
     for i in range(len(c)):
         f=[]
         for j in range(n-1):
             f.append(a[c[i][j]])
         d.append(f)
 
-def make_verts(verts_n,n,k): # æç”»ã®ãŸã‚ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
+def make_verts(verts_n,n,k): # •`‰æ‚Ì‚½‚ß‚Ì’¸“_ƒf[ƒ^‚Ìì¬
     p=k//10+1
     for l in range(9):
         verts_i=copy.deepcopy(verts_n[-1])
@@ -50,16 +48,16 @@ def make_verts(verts_n,n,k): # æç”»ã®ãŸã‚ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
             verts_n.append(verts_m_0[i])
         verts_m_0=copy.deepcopy(verts_m)
 
-def cylinder(o_0, o_1):  # æç”»ã®ãŸã‚ã®å††æŸ±ã®å®šç¾©
+def cylinder(o_0, o_1):  # •`‰æ‚Ì‚½‚ß‚Ì‰~’Œ‚Ì’è‹`
 
-    x_0 = o_0[0] #åº§æ¨™ã®è¨­å®š
+    x_0 = o_0[0] #À•W‚Ìİ’è
     y_0 = o_0[1]
     z_0 = o_0[2]
     x_1 = o_1[0]
     y_1 = o_1[1]
     z_1 = o_1[2]
 
-    x_c = x_0 + ((x_1-x_0)/2) #å††æŸ±ã®ä¸­å¿ƒã®ç‚¹ã‚’è¨­å®š
+    x_c = x_0 + ((x_1-x_0)/2) #‰~’Œ‚Ì’†S‚Ì“_‚ğİ’è
     y_c = y_0 + ((y_1-y_0)/2)
     z_c = z_0 + ((z_1-z_0)/2)
 
@@ -71,18 +69,13 @@ def cylinder(o_0, o_1):  # æç”»ã®ãŸã‚ã®å††æŸ±ã®å®šç¾©
     theta = math.acos( z_t/r )
     phi = math.atan2( (y_t), (x_t) )
 
-    bpy.ops.mesh.primitive_cylinder_add(location = (x_c, y_c, z_c),depth = r*2,radius = 0.2,rotation = (0, theta, phi))
+    bpy.ops.mesh.primitive_cylinder_add(location = (x_c, y_c, z_c),
+        depth = r*2,radius = 0.2,rotation = (0, theta, phi))
 
 #################################################
-# ç«‹æ–¹ä½“ã®é ‚ç‚¹åº§æ¨™ã¨è¾ºãƒ»é ‚ç‚¹ã®æ¥ç¶šé–¢ä¿‚
-verts=[[0,0,0],
-[10,0,0],
-[10,10,0],
-[0,10,0],
-[0,0,10],
-[10,0,10],
-[10,10,10],
-[0,10,10]]
+# —§•û‘Ì‚Ì’¸“_À•W‚Æ•ÓE’¸“_‚ÌÚ‘±ŠÖŒW
+verts=[[0,0,0], [10,0,0], [10,10,0], [0,10,0],
+[0,0,10], [10,0,10], [10,10,10], [0,10,10]]
 
 a = [(0,1),(1,2),(2,3),(0,3),
 (0,4),(1,5),(2,6),(3,7),
@@ -90,18 +83,18 @@ a = [(0,1),(1,2),(2,3),(0,3),
 
 #################################################
 
-n=len(verts)# é ‚ç‚¹ã®æ•°
-m=len(a)# è¾ºã®æ•°
+n=len(verts)# ’¸“_‚Ì”
+m=len(a)# •Ó‚Ì”
 
 comp=[i for i in range(n)]
 
-e=[]# å¤‰æ•°ã®åˆæœŸåŒ–
+e=[]# •Ï”‚Ì‰Šú‰»
 c=[]
 d=[]
 
-search(a,e,0,m,comp,c,n) #å…¨åŸŸæœ¨ã®æ¢ç´¢
+search(a,e,0,m,comp,c,n) #‘Sˆæ–Ø‚Ì’Tõ
 
-# çµæœã®æç”»
+# Œ‹‰Ê‚Ì•`‰æ
 make_edges(c,a,d,n)
 verts_n=[verts]
 k=len(c)

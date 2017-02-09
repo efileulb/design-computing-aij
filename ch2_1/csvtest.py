@@ -1,1 +1,8 @@
-import csv  # csvãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ãƒãƒ¼ãƒˆã€‚ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«è‡ªä½“ã‚’csv.pyã«ã™ã‚‹ã¨ç«¶åˆã™ã‚‹ã®ã§æ³¨æ„ã€‚f1 = open('data1.csv', 'r')  # data1.csvã‚’å…¥åŠ›ã®ãŸã‚ã«openf2 = open('data2.csv', 'w')  # data2.csvã‚’å‡ºåŠ›ã®ãŸã‚ã«openreader = csv.reader(f1)  # data1.csvã‚’csvå½¢å¼ã§èªè­˜writer = csv.writer(f2)  # data2.csvã‚’csvå½¢å¼ã§èªè­˜for row in reader:  # csvãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’1è¡Œãšã¤ãƒªã‚¹ãƒˆã¨ã—ã¦èª­ã¿è¾¼ã‚€    data1, data2 = float(row[0])**2, float(row[1])**2  # å®Ÿæ•°ã«å¤‰æ›ã—2ä¹—ã™ã‚‹    writer.writerow([data1, data2])  # 1è¡Œãšã¤æ›¸ãè¾¼ã‚€
+import csv  # csvƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒ|[ƒgB‚±‚Ìƒtƒ@ƒCƒ‹©‘Ì‚ğcsv.py‚É‚·‚é‚Æ‹£‡‚·‚é‚Ì‚Å’ˆÓB
+f1 = open('data1.csv', 'r')  # data1.csv‚ğ“ü—Í‚Ì‚½‚ß‚Éopen
+f2 = open('data2.csv', 'w')  # data2.csv‚ğo—Í‚Ì‚½‚ß‚Éopen
+reader = csv.reader(f1)  # data1.csv‚ğcsvŒ`®‚Å”F¯
+writer = csv.writer(f2)  # data2.csv‚ğcsvŒ`®‚Å”F¯
+for row in reader:  # csvƒtƒ@ƒCƒ‹‚Ì“à—e‚ğ1s‚¸‚ÂƒŠƒXƒg‚Æ‚µ‚Ä“Ç‚İ‚Ş
+    data1, data2 = float(row[0])**2, float(row[1])**2  # À”‚É•ÏŠ·‚µ2æ‚·‚é
+    writer.writerow([data1, data2])  # 1s‚¸‚Â‘‚«‚Ş

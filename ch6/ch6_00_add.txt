@@ -1,4 +1,4 @@
-##æœ€åˆã«ä¾‹ãˆã°ã“ã‚“ãªä½œæ¥­ãŒå¿…è¦
+##Å‰‚É—á‚¦‚Î‚±‚ñ‚Èì‹Æ‚ª•K—v
 
 >>> import os
 >>> os.chdir('/Users/kei/Dropbox/DB23_bitbucket/C007_designcomputingbook/ch6/aima-python')

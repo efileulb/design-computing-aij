@@ -1,1 +1,8 @@
-import numpy as npfrom scipy import integrate as itgr  # scipyå†…ã®integrateé–¢æ•°ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆdef pi(x):  # è¢«ç©åˆ†é–¢æ•°ã®å®šç¾©    return 4.0 / (1.0 + x**2)answer = itgr.quad(pi, 0, 1)  # (è¢«ç©åˆ†é–¢æ•°,ç©åˆ†åŒºé–“ä¸‹,ç©åˆ†åŒºé–“ä¸Š)print(answer) #  (3.1415926535897936, 3.4878684980086326e-14)
+import numpy as np
+from scipy import integrate as itgr  # scipy“à‚ÌintegrateŠÖ”‚ğƒCƒ“ƒ|[ƒg
+
+
+def pi(x):  # ”íÏ•ªŠÖ”‚Ì’è‹`
+    return 4.0 / (1.0 + x**2)
+answer = itgr.quad(pi, 0, 1)  # (”íÏ•ªŠÖ”,Ï•ª‹æŠÔ‰º,Ï•ª‹æŠÔã)
+print(answer)

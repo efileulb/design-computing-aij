@@ -3,18 +3,18 @@ import csv
 import math
 
 
-def input(fname):  # ãƒˆãƒ©ã‚¹ã®èª­ã¿è¾¼ã¿
+def input(fname):  # ƒgƒ‰ƒX‚Ì“Ç‚İ‚İ
     reader = csv.reader(open(fname, 'r'))
-    r, ij, A, E, fix, p = [], [], [], [], [], []  # ç¯€ç‚¹åº§æ¨™,è¦ç´ ç¯€ç‚¹é–¢ä¿‚,æ–­é¢ç©,ãƒ¤ãƒ³ã‚°ä¿‚æ•°,å¢ƒç•Œæ¡ä»¶,è·é‡ãƒ™ã‚¯ãƒˆãƒ«
-    for row in reader:  # ç¯€ç‚¹ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+    r, ij, A, E, fix, p = [], [], [], [], [], []  # ß“_À•W,—v‘fß“_ŠÖŒW,’f–ÊÏ,ƒ„ƒ“ƒOŒW”,‹«ŠEğŒ,‰×dƒxƒNƒgƒ‹
+    for row in reader:  # ß“_‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
         r.append([float(row[0]), float(row[1])])
-    nod, r = len(r), np.array(r)  # ç¯€ç‚¹æ•°,listâ†’arrayå¤‰æ›
-    for row in reader:  # è¦ç´ ç¯€ç‚¹é–¢ä¿‚ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+    nod, r = len(r), np.array(r)  # ß“_”,list¨array•ÏŠ·
+    for row in reader:  # —v‘fß“_ŠÖŒW‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
@@ -22,16 +22,16 @@ def input(fname):  # ãƒˆãƒ©ã‚¹ã®èª­ã¿è¾¼ã¿
         A.append(float(row[2]))
         E.append(float(row[3]))
     nel, A, E = len(ij), np.array(A), np.array(
-        E)  # è¦ç´ æ•°,listâ†’arrayå¤‰æ›,listâ†’arrayå¤‰æ›
-    for row in reader:  # å¢ƒç•Œæ¡ä»¶ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+        E)  # —v‘f”,list¨array•ÏŠ·,list¨array•ÏŠ·
+    for row in reader:  # ‹«ŠEğŒ‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
         fix.append([int(row[0]), int(row[1]), int(row[1])])
     p = np.zeros(nod * 2)
-    for row in reader:  # é›†ä¸­è·é‡ã®èª­ã¿è¾¼ã¿
-        break  # å…ˆé ­è¡Œã¯èª­ã¿é£›ã°ã—
+    for row in reader:  # W’†‰×d‚Ì“Ç‚İ‚İ
+        break  # æ“ªs‚Í“Ç‚İ”ò‚Î‚µ
     for row in reader:
         if row[0] == '':
             break
@@ -40,13 +40,13 @@ def input(fname):  # ãƒˆãƒ©ã‚¹ã®èª­ã¿è¾¼ã¿
     return r, nod, ij, nel, A, E, fix, p
 
 
-def length(r, ij, nel):  # è¦ç´ é•·ã•ã‚’è¨ˆç®—
+def length(r, ij, nel):  # —v‘f’·‚³‚ğŒvZ
     lgh = [math.sqrt((r[ij[i][0], 0] - r[ij[i][1], 0])**2 +
                      (r[ij[i][0], 1] - r[ij[i][1], 1])**2) for i in range(nel)]
     return np.array(lgh)
 
 
-def transmatrix(l, r1, r2):  # åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
+def transmatrix(l, r1, r2):  # À•W•ÏŠ·s—ñ‚ğ‹‚ß‚é
     tr = np.matrix([[0.0] * 4] * 4)
     lx, ly = r2[0] - r1[0], r2[1] - r1[1]
     cos, sin = lx / l, ly / l
@@ -55,7 +55,7 @@ def transmatrix(l, r1, r2):  # åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
     return tr
 
 
-def boundary_condition(fix):
+def boundary_condition(fix):  # ‹«ŠEğŒ‚Ìw’è
     remove = []
     for i in fix:
         if i[1] == 1:
@@ -65,20 +65,20 @@ def boundary_condition(fix):
     return remove
 
 
-def global_b(r, nod, ij, nel, lgh, remove):  # å…¨ä½“åº§æ¨™ç³»ã§ã®bãƒ™ã‚¯ãƒˆãƒ«ä½œæˆ
+def global_b(r, nod, ij, nel, lgh, remove):  # ‘S‘ÌÀ•WŒn‚Å‚ÌbƒxƒNƒgƒ‹ì¬
     b0, b_g = np.zeros([4]), np.zeros([2 * nod, nel])
     b0[0], b0[2] = 1.0, -1.0
     eln = 0
     for i_j in ij:
         ni, nj = i_j[0], i_j[1]
         trans = transmatrix(lgh[eln], r[ni, :], r[nj, :])
-        b = np.dot(trans.T, b0)  # å…¨ä½“åº§æ¨™ç³»ã«å¤‰æ›
-        b_g[ni * 2:(ni + 1) * 2, eln] += [b[0, 0], b[0, 1]]  # iç¯€ç‚¹ã®è‡ªç”±åº¦ç•ªå·ä½ç½®ã«æ ¼ç´
-        b_g[nj * 2:(nj + 1) * 2, eln] += [b[0, 2], b[0, 3]]  # jç¯€ç‚¹ã®è‡ªç”±åº¦ç•ªå·ä½ç½®ã«æ ¼ç´
+        b = np.dot(trans.T, b0)  # ‘S‘ÌÀ•WŒn‚É•ÏŠ·
+        b_g[ni * 2:(ni + 1) * 2, eln] += [b[0, 0], b[0, 1]]  # iß“_‚Ì©—R“x”Ô†ˆÊ’u‚ÉŠi”[
+        b_g[nj * 2:(nj + 1) * 2, eln] += [b[0, 2], b[0, 3]]  # jß“_‚Ì©—R“x”Ô†ˆÊ’u‚ÉŠi”[
         eln += 1
-    return np.delete(np.matrix(b_g), remove, 0)  # æ‹˜æŸç¯€ç‚¹è‡ªç”±åº¦ã«å¯¾å¿œã™ã‚‹è¡Œã‚’æ¶ˆå»
+    return np.delete(np.matrix(b_g), remove, 0)  # S‘©ß“_©—R“x‚É‘Î‰‚·‚és‚ğÁ‹
 
 
-def make_k(E, a, l, b, nel):  # å…¨ä½“å‰›æ€§ãƒãƒˆãƒªã‚¯ã‚¹ã®ä½œæˆ
+def make_k(E, a, l, b, nel):  # ‘S‘Ì„«s—ñ‚Ìì¬
     K = sum([E[e] * a[e] / l[e] * b[:, e].dot(b[:, e].T) for e in range(nel)])
     return K

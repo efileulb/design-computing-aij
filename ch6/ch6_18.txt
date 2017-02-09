@@ -1,4 +1,4 @@
->>> list(DG.edges())   # DG ã«å«ã¾ã‚Œã‚‹ edges ã‚’è¡¨ç¤ºã™ã‚‹
+>>> list(DG.edges())   # DG ‚ÉŠÜ‚Ü‚ê‚é edges ‚ð•\Ž¦‚·‚é
 
-[('archi', 'roof'), ('archi', 'artifact'), ('house', 'archi'), ('farnsworth', 'house'),
- ('villa_savoye', 'house')]
+[('villa_savoye', 'house'), ('farnsworth', 'house'), ('roof', 'rain_cover'),
+ ('house', 'archi'), ('archi', 'artifact'), ('archi', 'roof')]

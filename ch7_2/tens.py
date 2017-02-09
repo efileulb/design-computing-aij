@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# coded by shin@Titech & DN-archi Co.,LTD 2016.07
 import numpy as np
 from scipy import optimize
 import fem
@@ -7,7 +5,7 @@ import graph
 import os
 
 
-def lagrange(x, w, ijt, ijc, nod, nelt, nelc, lc_bar):  # åœç•™æ¡ä»¶é–¢æ•°
+def lagrange(x, w, ijt, ijc, nod, nelt, nelc, lc_bar):  # ’â—¯ğŒŠÖ”
     r[:, 0], r[:, 1], r[:, 2] = x[:nod], x[nod:nod * 2], x[nod * 2:nod * 3]
     lam = x[nod * 3:]
     lght, lghc = fem.length(r, ijt, ijc, nelt, nelc)
@@ -19,30 +17,30 @@ def lagrange(x, w, ijt, ijc, nod, nelt, nelc, lc_bar):  # åœç•™æ¡ä»¶é–¢æ•°
 
 filename = '20_face_pieces'
 inputfilename = 'datain/' + filename + '.csv'
-r, ijt, ijc, nod, nelt, nelc = fem.input(inputfilename)  # å½¢çŠ¶ã¨è¦ç´ ç¯€ç‚¹é–¢ä¿‚ã®èª­ã¿è¾¼ã¿
+r, ijt, ijc, nod, nelt, nelc = fem.input(inputfilename)  # Œ`ó‚Æ—v‘fß“_ŠÖŒW‚Ì“Ç‚İ‚İ
 xmin, xmax, ymin, ymax, zmin, zmax =\
     np.min(r), np.max(r), np.min(r), np.max(r), np.min(r), np.max(r)
 graph.plot_shape3D(r, ijt, ijc, xmin, xmax, ymin,
-                   ymax, zmin, zmax)  # åˆæœŸå½¢çŠ¶ã®æç”»(ç¢ºèªç”¨)
-lght, lghc = fem.length(r, ijt, ijc, nelt, nelc)  # éƒ¨æé•·ã®è¨ˆç®—
-lc_bar = lghc * 1.0  # åœ§ç¸®æã®é•·ã•ã®æŒ‡å®šå€¤(ã“ã“ã§ã¯åˆæœŸå½¢çŠ¶ã®å€¤ã¨ã™ã‚‹)
+                   ymax, zmin, zmax)  # ‰ŠúŒ`ó‚Ì•`‰æ(Šm”F—p)
+lght, lghc = fem.length(r, ijt, ijc, nelt, nelc)  # •”Ş’·‚ÌŒvZ
+lc_bar = lghc * 1.0  # ˆ³kŞ‚Ì’·‚³‚Ìw’è’l(‚±‚±‚Å‚Í‰ŠúŒ`ó‚Ì’l‚Æ‚·‚é)
 lam = np.zeros(nelc)
 x = np.r_[r[:, 0], r[:, 1], r[:, 2], lam]
 w = [1.0] * len(lght)
 x = optimize.root(lagrange, x, args=(w, ijt, ijc, nod, nelt, nelc, lc_bar)).x
 r[:, 0], r[:, 1], r[:, 2] = x[:nod], x[
-    nod:nod * 2], x[nod * 2:nod * 3]  # æœ€é©è§£ã‚’ç¯€ç‚¹åº§æ¨™ã¸æ›¸è¾¼ã‚€
+    nod:nod * 2], x[nod * 2:nod * 3]  # Å“K‰ğ‚ğß“_À•W‚Ö‘‚Ş
 b, lam = np.array(
-    [4.0 * w[e] * lght[e]**3 for e in range(nelt)]), x[nod * 3:]  # è»¸åŠ›ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—
+    [4.0 * w[e] * lght[e]**3 for e in range(nelt)]), x[nod * 3:]  # ²—Íƒ‚[ƒhŒvZ
 dir = 'dataout/'
 outputfilename = dir + filename + '_opt.csv'
 
-try:  # dataoutãƒ•ã‚©ãƒ«ãƒ€ã®å­˜åœ¨æœ‰ç„¡ã‚’èª¿ã¹ï¼Œãªã‘ã‚Œã°æ–°è¦ä½œæˆã™ã‚‹
+try:  # dataoutƒtƒHƒ‹ƒ_‚Ì‘¶İ—L–³‚ğ’²‚×C‚È‚¯‚ê‚ÎV‹Kì¬‚·‚é
     os.stat(dir)
 except:
     os.mkdir(dir)
 fem.output(outputfilename, r, nod, ijt, ijc,
-           nelt, nelc, b, lam)  # æœ€é©å½¢çŠ¶ã¨è»¸åŠ›ãƒ¢ãƒ¼ãƒ‰ã®å‡ºåŠ›
+           nelt, nelc, b, lam)  # Å“KŒ`ó‚Æ²—Íƒ‚[ƒh‚Ìo—Í
 xmin, xmax, ymin, ymax, zmin, zmax =\
     np.min(r), np.max(r), np.min(r), np.max(r), np.min(r), np.max(r)
-graph.plot_shape3D(r, ijt, ijc, xmin, xmax, ymin, ymax, zmin, zmax)  # æœ€é©å½¢çŠ¶ã®æç”»
+graph.plot_shape3D(r, ijt, ijc, xmin, xmax, ymin, ymax, zmin, zmax)  # Å“KŒ`ó‚Ì•`‰æ

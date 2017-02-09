@@ -6,61 +6,61 @@ RANDOM_SEED = 5
 class Person:
 
     def __init__(self, env, name, mu):
-        self.env = env  # SimPyã®ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒ
-        self.name = name  # è‡ªåˆ†ã®åå‰
-        # ç”¨ã‚’è¶³ã™ã®ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’ã‚¢ãƒ¼ãƒ©ãƒ³åˆ†å¸ƒã§ä¸ãˆã‚‹ã€‚
+        self.env = env  # SimPy‚ÌƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«
+        self.name = name  # ©•ª‚Ì–¼‘O
+        # —p‚ğ‘«‚·‚Ì‚É‚©‚©‚éŠÔ‚ğƒA[ƒ‰ƒ“•ª•z‚Å—^‚¦‚éB
         k = 3.0
-        lam_2 = k * mu  # æœŸå¾…å€¤1/mu=k/lamã‚ˆã‚Šlam=k*mu
+        lam_2 = k * mu  # Šú‘Ò’l1/mu=k/lam‚æ‚èlam=k*mu
         self.relieve_time = npr.gamma(k, 1. / lam_2)
-        self.status = "initial"  # è‡ªåˆ†ã®çŠ¶æ…‹ã‚’è¡¨ã™ã€‚
+        self.status = 'initial'  # ©•ª‚Ìó‘Ô‚ğ•\‚·B
 
-    def __repr__(self):  # print(self)ã‚’ã—ãŸæ™‚ã®å‡ºåŠ›ã‚’æ±ºã‚ã¦ãŠãã€‚
-        return "time: %6.2f, name: %s, status: %s" % (self.env.now, self.name, self.status)
+    def __repr__(self):  # print(self)‚ğ‚µ‚½‚Ìo—Í‚ğŒˆ‚ß‚Ä‚¨‚­B
+        return 'time: %6.2f, name: %s, status: %s' % (self.env.now, self.name, self.status)
 
-    def behave(self, toilet):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
+    def behave(self, toilet):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
         print(self)
-        # SimPyã«è¿½åŠ ã™ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã¨ã—ã¦ï¼Œgeneratorã¨ã—ã¦ä½œæˆã™ã‚‹ã€‚
+        # SimPy‚É’Ç‰Á‚·‚éƒvƒƒZƒX‚Æ‚µ‚ÄCgenerator‚Æ‚µ‚Äì¬‚·‚éB
         with toilet.request() as req:
-            self.status = "queueing"
+            self.status = 'queueing'
             print(self)
-            yield req  # requestãŒé€šã‚‹ã¾ã§å¾…ã¡ï¼Œé€šã£ãŸã‚‰æ¬¡ã®ãƒ—ãƒ­ã‚»ã‚¹ã¸ã€‚
-            self.status = "relieving"
+            yield req  # request‚ª’Ê‚é‚Ü‚Å‘Ò‚¿C’Ê‚Á‚½‚çŸ‚ÌƒvƒƒZƒX‚ÖB
+            self.status = 'relieving'
             print(self)
             yield self.env.timeout(self.relieve_time)
-            self.status = "leaving"  # é€€å‡ºä¸­ã€‚
+            self.status = 'leaving'  # ‘Şo’†B
             print(self)
 
 
 def person_generator(env, toilet, lam, mu, person_Num=None):
-    print("time: %6.2f, start" % env.now)
+    print('time: %6.2f, start' % env.now)
     i = 0
     if person_Num == None:
         def flag(i):
-            return True #Noneã®ã¨ãã¯ç„¡é™æ¯é›†å›£ã¨ã—ã¦æ‰±ã†ã€‚
+            return True #None‚Ì‚Æ‚«‚Í–³ŒÀ•êW’c‚Æ‚µ‚Äˆµ‚¤B
     else:
         def flag(i):
-            return i < person_Num  # æœ‰é™æ¯é›†å›£ã€‚
+            return i < person_Num  # —LŒÀ•êW’cB
             
     while flag(i):
-        # ç™»å ´ã™ã‚‹æ™‚é–“é–“éš”ã¯æŒ‡æ•°åˆ†å¸ƒ
+        # “oê‚·‚éŠÔŠÔŠu‚Íw”•ª•z
         yield env.timeout(npr.exponential(1.0 / lam, size=1))
-        person = Person(env, "person_%00d" % i, mu)
+        person = Person(env, 'person_%00d' % i, mu)
         i += 1
-        env.process(person.behave(toilet))  # ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒã«å®Ÿè¡Œã™ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã‚’è¿½åŠ 
+        env.process(person.behave(toilet))  # ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«‚ÉÀs‚·‚éƒvƒƒZƒX‚ğ’Ç‰Á
 
 
 def simulation(lam=0.2, mu=0.2, capacity=1, until=100):
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
-    # ç’°å¢ƒã‚’è¨­å®š
-    env = simpy.Environment()  # SimPyã«ã‚ˆã‚‹ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒã‚’ä½œæˆ
-    toilet = simpy.Resource(env, capacity=capacity)  # capacityã®æ•°ã ã‘ãƒˆã‚¤ãƒ¬ãŒã‚ã‚‹ã€‚
-    # äººã‚’è¨­å®š
-    person_Num = 5  # æœ‰é™æ¯é›†å›£
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
+    # ŠÂ‹«‚ğİ’è
+    env = simpy.Environment()  # SimPy‚É‚æ‚éƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«‚ğì¬
+    toilet = simpy.Resource(env, capacity=capacity)  # capacity‚Ì”‚¾‚¯ƒgƒCƒŒ‚ª‚ ‚éB
+    # l‚ğİ’è
+    person_Num = 5  # —LŒÀ•êW’c
     env.process(person_generator(env, toilet,
-                                 lam, mu, person_Num))  # äººã‚’å‡ºç¾ã•ã›ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã¨ç™»éŒ²
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
+                                 lam, mu, person_Num))  # l‚ğoŒ»‚³‚¹‚éƒvƒƒZƒX‚Æ“o˜^
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
     env.run(until=until)
 
-if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
+if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
     npr.seed(RANDOM_SEED)
     simulation(lam=0.2, mu=0.2, capacity=1, until=100)

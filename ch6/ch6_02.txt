@@ -1,6 +1,6 @@
->>> kb0.tell(expr('P'))      # P ã‚’ True ã«è¨­å®šã™ã‚‹
->>> kb0.ask(expr('P'))       # P ã®çœŸç†å€¤ã‚’ kb0 ã«èã
-{}                           # {} ã¯ True ã‚’æ„å‘³ã™ã‚‹
->>> kb0.tell(expr('Q'))      # Q ã‚’ True ã¨ã™ã‚‹
->>> kb0.ask(expr('Q'))       # Q ã®çœŸç†å€¤ã‚’ kb0 ã«èã
+>>> kb0.tell(expr('P'))      # P ‚ğ True ‚Éİ’è‚·‚é
+>>> kb0.ask(expr('P'))       # P ‚Ì^—’l‚ğ kb0 ‚É•·‚­
+{}                           # {} ‚Í True ‚ğˆÓ–¡‚·‚é
+>>> kb0.tell(expr('Q'))      # Q ‚ğ True ‚Æ‚·‚é
+>>> kb0.ask(expr('Q'))       # Q ‚Ì^—’l‚ğ kb0 ‚É•·‚­
 {}

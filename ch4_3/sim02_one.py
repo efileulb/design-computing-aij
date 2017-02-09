@@ -5,51 +5,51 @@ RANDOM_SEED = 5
 class Person:
 
     def __init__(self, name):
-        self.name = name  # è‡ªåˆ†ã®åå‰
-        #ã€€åˆ°ç€ã™ã‚‹ã¾ã§ã®æ™‚é–“ã‚’æŒ‡æ•°åˆ†å¸ƒã§ä¸ãˆã‚‹ã€‚
+        self.name = name  # ©•ª‚Ì–¼‘O
+        #@“’…‚·‚é‚Ü‚Å‚ÌŠÔ‚ğw”•ª•z‚Å—^‚¦‚éB
         expected_1 = 30.0
-        lam_1 = 1.0 / expected_1  # æœŸå¾…å€¤=1/lam
+        lam_1 = 1.0 / expected_1  # Šú‘Ò’l=1/lam
         self.arrive_time = npr.exponential(1. / lam_1)
-        # ç”¨ã‚’è¶³ã™ã®ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’ã‚¢ãƒ¼ãƒ©ãƒ³åˆ†å¸ƒã§ä¸ãˆã‚‹ã€‚
-        # ã‚¢ãƒ¼ãƒ©ãƒ³åˆ†å¸ƒã¯ã‚¬ãƒ³ãƒåˆ†å¸ƒã®é–¢æ•°ã§è¡¨ç¾ã§ãã‚‹ã€‚
+        # —p‚ğ‘«‚·‚Ì‚É‚©‚©‚éŠÔ‚ğƒA[ƒ‰ƒ“•ª•z‚Å—^‚¦‚éB
+        # ƒA[ƒ‰ƒ“•ª•z‚ÍƒKƒ“ƒ}•ª•z‚ÌŠÖ”‚Å•\Œ»‚Å‚«‚éB
         k = 3.0
         expected_2 = 5.0
-        lam_2 = k / expected_2  # æœŸå¾…å€¤E=k/lamã‚ˆã‚Šlam=k/E
+        lam_2 = k / expected_2  # Šú‘Ò’lE=k/lam‚æ‚èlam=k/E
         self.relieve_time = npr.gamma(k, 1. / lam_2)
-        self.status = "initial"  # è‡ªåˆ†ã®çŠ¶æ…‹ã‚’è¡¨ã™ã€‚Noneã¯å­˜åœ¨ã—ãªã„ã“ã¨ã‚’è¡¨ã™ã€‚
+        self.status = 'initial'  # ©•ª‚Ìó‘Ô‚ğ•\‚·BNone‚Í‘¶İ‚µ‚È‚¢‚±‚Æ‚ğ•\‚·B
 
-    def __repr__(self):  # print(self)ã‚’ã—ãŸæ™‚ã®å‡ºåŠ›ã‚’æ±ºã‚ã¦ãŠãã€‚
-        return "name: %s, status: %s" % (self.name, self.status)
+    def __repr__(self):  # print(self)‚ğ‚µ‚½‚Ìo—Í‚ğŒˆ‚ß‚Ä‚¨‚­B
+        return 'name: %s, status: %s' % (self.name, self.status)
 
-    def behave(self):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
+    def behave(self):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
         if self.status == 'initial':
-            self.arrive_time -= 1  # ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹
+            self.arrive_time -= 1  # ƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚é
             if self.arrive_time <= 0:
                 self.status = 'relieving'
         elif self.status == 'relieving':
-            self.relieve_time -= 1  # ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹
-            if self.relieve_time <= 0:  # ã‚‚ã—ç”¨ã‚’è¶³ã—çµ‚ãˆãŸã‚‰ï¼Œé€€å‡ºã™ã‚‹ã€‚
-                self.status = "leaving"  # é€€å‡ºä¸­ã€‚
+            self.relieve_time -= 1  # ƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚é
+            if self.relieve_time <= 0:  # ‚à‚µ—p‚ğ‘«‚µI‚¦‚½‚çC‘Şo‚·‚éB
+                self.status = 'leaving'  # ‘Şo’†B
         print(self)
 
 
 def simulation():
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
-    person = Person("Yasuda")  # äººã‚’è¨­å®š
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
+    person = Person('Yasuda')  # l‚ğİ’è
     time = 0
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
     while time < 1000:
         time += 1
-        print("time:%d" % time)
+        print('time:%d' % time)
         person.behave()
-        if person.status == "leaving":
-            break  # é€€å‡ºã—ãŸã®ã§ãƒ«ãƒ¼ãƒ—ã‚’çµ‚ã‚ã‚‹
+        if person.status == 'leaving':
+            break  # ‘Şo‚µ‚½‚Ì‚Åƒ‹[ƒv‚ğI‚í‚é
 
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã¾ã¨ã‚ ###
-    print("report")
-    print("simulation time: %d" % (time))
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“I—¹Œã‚Ü‚Æ‚ß ###
+    print('report')
+    print('simulation time: %d' % (time))
 
 
-if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
+if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
     npr.seed(RANDOM_SEED)
     simulation()

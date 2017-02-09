@@ -5,38 +5,38 @@ import scipy.stats as sps
 import matplotlib.pylab as plt
 
 RANDOM_SEED = 1  # random seed
-SIZE = 10000  # 試行回数
-EXPECTED_V = 5  # 期待値
+SIZE = 10000  # ���s��
+EXPECTED_V = 5  # ���Ғl
 
 
 def x_uniform():
-    # 一様分布
-    #︎ aからbまで一様の確率のときその間のxを返す。
+    # ��l���z
+    #? a����b�܂ň�l�̊m���̂Ƃ����̊Ԃ�x��Ԃ��B
     a = 0
     b = EXPECTED_V * 2 - a
     return npr.uniform(a, b, SIZE)
 
 
 def x_poisson():
-    # ポアソン分布
-    # 単位時間あたりλ回起こる事象がちょうどk回発生するときのkを返す
-    lambd = EXPECTED_V  # 期待値=λとなる
+    # �|�A�\�����z
+    # �P�ʎ��Ԃ�����ɉ�N���鎖�ۂ����傤��k�񔭐�����Ƃ���k��Ԃ�
+    lambd = EXPECTED_V  # ���Ғl=�ɂƂȂ�
     return npr.poisson(lambd, size=SIZE)
 
 
 def x_exponential():
-    # 指数分布
-    # 単位時間当たり平均λ回起こる事象＝平均1/λ時間で1回発生する事象の発生間隔がt時間であるときのtを返す
-    #　平均余命など。
-    lambd = 1.0 / EXPECTED_V  # 1分あたりlambd回発生する。= 平均1/lambd時間の間隔で1回発生
-    return npr.exponential(1. / lambd, size=SIZE)  # 発生間隔をランダムに返す
+    # �w�����z
+    # �P�ʎ��ԓ����蕽�σɉ�N���鎖�ہ�����1/�Ɏ��Ԃ�1�񔭐����鎖�ۂ̔����Ԋu��t���Ԃł���Ƃ���t��Ԃ�
+    #�@���ϗ]���ȂǁB
+    lambd = 1.0 / EXPECTED_V  # 1��������lambd�񔭐�����B= ����1/lambd���Ԃ̊Ԋu��1�񔭐�
+    return npr.exponential(1. / lambd, size=SIZE)  # �����Ԋu�������_���ɕԂ�
 
 
 def x_erlang():
-    # アーラン分布
-    # アーラン分布はガンマ分布の形状母数kを正整数に限定したもの
+    # �A�[�������z
+    # �A�[�������z�̓K���}���z�̌`��ꐔk�𐳐����Ɍ��肵������
     k = 3
-    lambd = k / EXPECTED_V  # 期待値 = k/λとなる。
+    lambd = k / EXPECTED_V  # ���Ғl = k/�ɂƂȂ�B
     return npr.gamma(k, 1. / lambd, size=SIZE)
 
 

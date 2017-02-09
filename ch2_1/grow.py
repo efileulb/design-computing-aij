@@ -1,20 +1,18 @@
-def grow(s, r):  # æ–‡å­—åˆ—sã¨ç¹°ã‚Šè¿”ã—å›žæ•°rã‚’å…¥åŠ›
-    n = len(s)  # å…¥åŠ›ã—ãŸæ–‡å­—åˆ—ã®é•·ã•
-    ss = ' '  # å‡ºåŠ›ã™ã‚‹æ–‡å­—åˆ—ã‚’åˆæœŸåŒ–
+def grow(s, r):  # •¶Žš—ñs‚ÆŒJ‚è•Ô‚µ‰ñ”r‚ð“ü—Í
+    n = len(s)  # “ü—Í‚µ‚½•¶Žš—ñ‚Ì’·‚³
+    ss = ' '  # o—Í‚·‚é•¶Žš—ñ‚ð‰Šú‰»
     for i in range(n):
-        if s[i] == 'f':  # ' f'  ã‚’ ' fg'  ã«æ›¸ãæ›ãˆ
+        if s[i] == 'f':  # ' f'  ‚ð ' fg'  ‚É‘‚«Š·‚¦
             ss = ss + 'fg'
         else:
-            if s[i] == 'g':  # ' g'  ã‚’ ' gh'  ã«æ›¸ãæ›ãˆ
+            if s[i] == 'g':  # ' g'  ‚ð ' gh'  ‚É‘‚«Š·‚¦
                 ss = ss + 'gh'
             else:
-                ss = ss + 'h'  # ãã®ä»–ã®æ–‡å­—ï¼ˆhï¼‰ã®ã¨ããã®ã¾ã¾
+                ss = ss + 'h'  # ‚»‚Ì‘¼‚Ì•¶Žšihj‚Ì‚Æ‚«‚»‚Ì‚Ü‚Ü
     print(ss)
-    r -= 1  # æ®‹ã‚Šã®ç¹°è¿”ã—å›žæ•°ã‚’1æ¸›ã‚‰ã™
-    if r > 0:  # ç¹°è¿”ã—å›žæ•°ãŒ0ã§ãªã„æ™‚ï¼Œè‡ªåˆ†è‡ªèº«ã‚’å‘¼ã³å‡ºã™
+    r -= 1  # Žc‚è‚ÌŒJ•Ô‚µ‰ñ”‚ð1Œ¸‚ç‚·
+    if r > 0:  # ŒJ•Ô‚µ‰ñ”‚ª0‚Å‚È‚¢ŽžCŽ©•ªŽ©g‚ðŒÄ‚Ño‚·
         grow(ss, r)
     return ss
 
-grow('fgh', 2)  # growã‚’2å›žå®Ÿè¡Œ
-# fgghh
-# hfgghghhh
+grow('fgh', 2)  # grow‚ð2‰ñŽÀs

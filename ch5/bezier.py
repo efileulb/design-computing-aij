@@ -1,14 +1,14 @@
-import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-import csv  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«csvã®èª­ã¿è¾¼ã¿
-from numba.decorators import jit  # just-in timeã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã®èª­ã¿è¾¼ã¿#
-import matplotlib.pyplot as plt  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«matplotlibã®pyploté–¢æ•°ã‚’
-# pltã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
-from mpl_toolkits.mplot3d import Axes3D  # matplotlibã®3æ¬¡å…ƒãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
-from mpl_toolkits.mplot3d import proj3d  # matplotlibã®3æ¬¡å…ƒãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+import csv  # ƒ‚ƒWƒ…[ƒ‹csv‚Ì“Ç‚İ‚İ
+from numba.decorators import jit  # just-in timeƒRƒ“ƒpƒCƒ‰‚Ì“Ç‚İ‚İ#
+import matplotlib.pyplot as plt  # ƒ‚ƒWƒ…[ƒ‹matplotlib‚ÌpyplotŠÖ”‚ğ
+# plt‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
+from mpl_toolkits.mplot3d import Axes3D  # matplotlib‚Ì3ŸŒ³ƒ‚ƒWƒ…[ƒ‹
+from mpl_toolkits.mplot3d import proj3d  # matplotlib‚Ì3ŸŒ³ƒ‚ƒWƒ…[ƒ‹
 
 
 @jit
-def bernstein(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å®šç¾©
+def bernstein(t, n, i):  # bernsteinŠù’èŠÖ”‚Ì’è‹`
     cn, ci, cni = 1.0, 1.0, 1.0
     for k in range(2, n, 1):
         cn = cn * k
@@ -25,7 +25,7 @@ def bernstein(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å®šç¾©
 
 
 @jit
-def d_bern(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å¾®åˆ†ã®å®šç¾©
+def d_bern(t, n, i):  # bernsteinŠù’èŠÖ”‚Ì”÷•ª‚Ì’è‹`
     cn, ci, cni = 1.0, 1.0, 1.0
     for k in range(2, n, 1):
         cn = cn * k
@@ -42,7 +42,7 @@ def d_bern(t, n, i):  # bernsteinæ—¢å®šé–¢æ•°ã®å¾®åˆ†ã®å®šç¾©
     return j
 
 
-def bezierplot(nu, nv, uv, cp):  # bezieræ›²é¢ã®å®šç¾©
+def bezierplot(nu, nv, uv, cp):  # bezier‹È–Ê‚Ì’è‹`
     xyz = np.zeros([len(uv), 3])
     for k in range(len(uv)):
         u, v, sum1, sum2, sum3, l = uv[k, 0], uv[k, 1], 0.0, 0.0, 0.0, 0
@@ -59,7 +59,7 @@ def bezierplot(nu, nv, uv, cp):  # bezieræ›²é¢ã®å®šç¾©
 
 
 @jit
-def EGF(nu, nv, u, v, cp):  # bezieræ›²é¢ã®é¢ç©ã‚’æ±‚ã‚ã‚‹é–¢æ•°
+def EGF(nu, nv, u, v, cp):  # bezier‹È–Ê‚Ì–ÊÏ‚ğ‹‚ß‚éŠÖ”
     z1, z2, l = np.zeros(3), np.zeros(3), 0
     for i in range(1, nu + 1, 1):
         bu, dbu = bernstein(u, nu, i), d_bern(u, nu, i)
@@ -77,21 +77,21 @@ def EGF(nu, nv, u, v, cp):  # bezieræ›²é¢ã®é¢ç©ã‚’æ±‚ã‚ã‚‹é–¢æ•°
     return (abs(E * G - F**2))**0.5
 
 
-def orthogonal_transformation(zfront, zback):  # æ›²é¢ã®æç”»ã‚’
+def orthogonal_transformation(zfront, zback):  # ‹È–Ê‚Ì•`‰æ‚ğ
     a, b, c = 2 / (zfront - zback), -1 * (zfront + zback) / \
         (zfront - zback), zback
     return np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, a, b], [0, 0, 0, c]])
 
 
-def plot_shape(nu, nv, cp, limit):  # bezieræ›²é¢ã‚’æç”»ã™ã‚‹é–¢æ•°
+def plot_shape(nu, nv, cp, limit):  # bezier‹È–Ê‚ğ•`‰æ‚·‚éŠÖ”
     proj3d.persp_transformation = orthogonal_transformation
-    u, v = np.arange(0, 1 + 0.1, 0.1), np.arange(0, 1 + 0.1, 0.1)  # ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
-    uv = [[i, j] for i in u for j in v]  # ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼å­çŠ¶ã«é…ç½®
-    uv = np.array(uv)  # ãƒªã‚¹ãƒˆã®arrayå¤‰æ›
-    s = bezierplot(nu, nv, uv, cp)  # bezieræ›²é¢ç”Ÿæˆ
+    u, v = np.arange(0, 1 + 0.1, 0.1), np.arange(0, 1 + 0.1, 0.1)  # ƒpƒ‰ƒ[ƒ^¶¬
+    uv = [[i, j] for i in u for j in v]  # ƒpƒ‰ƒ[ƒ^‚ğŠiqó‚É”z’u
+    uv = np.array(uv)  # ƒŠƒXƒg‚Ìarray•ÏŠ·
+    s = bezierplot(nu, nv, uv, cp)  # bezier‹È–Ê¶¬
     k = 0
     x, y, z = [], [], []
-    for i in range(len(u)):  # ç”Ÿæˆã—ãŸç¯€ç‚¹åº§æ¨™ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¡Œã”ã¨ã«åˆ†è§£
+    for i in range(len(u)):  # ¶¬‚µ‚½ß“_À•WƒxƒNƒgƒ‹‚ğs‚²‚Æ‚É•ª‰ğ
         xi, yi, zi = [], [], []
         for j in range(len(v)):
             xi.append(s[k, 0]), yi.append(s[k, 1]), zi.append(s[k, 2])
@@ -99,7 +99,7 @@ def plot_shape(nu, nv, cp, limit):  # bezieræ›²é¢ã‚’æç”»ã™ã‚‹é–¢æ•°
         x.append(xi), y.append(yi), z.append(zi)
     cx, cy, cz = [], [], []
     k = 0
-    for i in range(nu):  # ç”Ÿæˆã—ãŸåˆ¶å¾¡åº§æ¨™ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¡Œã”ã¨ã«åˆ†è§£
+    for i in range(nu):  # ¶¬‚µ‚½§ŒäÀ•WƒxƒNƒgƒ‹‚ğs‚²‚Æ‚É•ª‰ğ
         cxi, cyi, czi = [], [], []
         for j in range(nv):
             cxi.append(cp[k, 0]), cyi.append(cp[k, 1]), czi.append(cp[k, 2])
@@ -110,8 +110,8 @@ def plot_shape(nu, nv, cp, limit):  # bezieræ›²é¢ã‚’æç”»ã™ã‚‹é–¢æ•°
     ax.set_axis_off(), ax.set_aspect('equal')
     ax.set_xlim(limit[0], limit[1]), ax.set_ylim(limit[2], limit[3]),
     ax.set_zlim(limit[4], limit[5])
-    ax.plot_surface(x, y, z, rstride=1, cstride=1)  # bezieræ›²é¢ã®æç”»
-    ax.plot_wireframe(cx, cy, cz, color='g', linestyle='dashed')  # åˆ¶å¾¡ãƒãƒƒãƒˆæç”»
+    ax.plot_surface(x, y, z, rstride=1, cstride=1, alpha=0.2)  # bezier‹È–Ê‚Ì•`‰æ
+    ax.plot_wireframe(cx, cy, cz, color='g', linestyle='dashed')  # §Œäƒlƒbƒg•`‰æ
     ax.plot(cp[:, 0], cp[:, 1], cp[:, 2], color='g',
-            lw=0, marker='o', ms=5)  # åˆ¶å¾¡ç‚¹ã®æç”»
+            lw=0, marker='o', ms=5)  # §Œä“_‚Ì•`‰æ
     plt.show()

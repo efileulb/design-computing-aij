@@ -1,14 +1,18 @@
->>> import matplotlib.pyplot as plt  # matplotlib ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹
->>> edge_labels = {}  # ãƒªãƒ³ã‚¯ã‚’æ ¼ç´ã™ã‚‹ edge_labels ã‚’ç”¨æ„ã™ã‚‹
+>>> import matplotlib.pyplot as plt  # matplotlib ‚ğƒCƒ“ƒ|[ƒg‚·‚é
+>>> edge_labels = {}  # ƒŠƒ“ƒN‚ğŠi”[‚·‚é edge_labels ‚ğ—pˆÓ‚·‚é
 >>> for a, b, c in list(DG.edges(data='type')):
-...     edge_labels[(a, b)] = c  # ãƒªãƒ³ã‚¯ã‚’ edge_labels ã«æ ¼ç´ã™ã‚‹
+...     edge_labels[(a, b)] = c  # ƒŠƒ“ƒN‚ğ edge_labels ‚ÉŠi”[‚·‚é
 ...
 
 
->>> pos = nx.spring_layout(DG)  # ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®è¡¨ç¤ºã®ä»•æ–¹ã‚’æŒ‡å®šã™ã‚‹
->>> nx.draw_networkx_nodes(DG, pos, node_size=2000, node_color='white')  # ãƒãƒ¼ãƒ‰ã®å¤§ãã•ãƒ»è‰²ã®æŒ‡å®š
->>> nx.draw_networkx_edges(DG, pos, width=2, alpha=0.5, edge_color='black')  # ãƒªãƒ³ã‚¯ã®å¤ªã•ãƒ»è‰²ã®æŒ‡å®š
->>> nx.draw_networkx_labels(DG, pos, font_size=12, font_family='sans-serif')  # ãƒãƒ¼ãƒ‰ã®ãƒ•ã‚©ãƒ³ãƒˆã®æŒ‡å®š
->>> nx.draw_networkx_edge_labels(DG, pos, edge_labels, font_size=12, font_family='sans-serif')  # ãƒªãƒ³ã‚¯ã®ãƒ•ã‚©ãƒ³ãƒˆã®æŒ‡å®š
->>> plt.axis('off')  # åº§æ¨™ã‚’è¡¨ç¤ºã—ãªã„
->>> plt.show()  # ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å›³ã‚’è¡¨ç¤º
+>>> pos = nx.spring_layout(DG)  # ƒlƒbƒgƒ[ƒN‚Ì•\¦‚Ìd•û‚ğw’è‚·‚é
+# ƒm[ƒh‚Ì‘å‚«‚³EF‚Ìw’è
+>>> nx.draw_networkx_nodes(DG, pos, node_size=2000, node_color='white')
+# ƒŠƒ“ƒN‚Ì‘¾‚³EF‚Ìw’è
+>>> nx.draw_networkx_edges(DG, pos, width=2, alpha=0.5, edge_color='black')
+# ƒm[ƒh‚ÌƒtƒHƒ“ƒg‚Ìw’è
+>>> nx.draw_networkx_labels(DG, pos, font_size=12, font_family='sans-serif')
+# ƒŠƒ“ƒN‚ÌƒtƒHƒ“ƒg‚Ìw’è
+>>> nx.draw_networkx_edge_labels(DG, pos, edge_labels, font_size=12, font_family='sans-serif')
+>>> plt.axis('off')  # À•W‚ğ•\¦‚µ‚È‚¢
+>>> plt.show()  # ƒlƒbƒgƒ[ƒN}‚ğ•\¦

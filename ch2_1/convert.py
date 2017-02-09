@@ -1,1 +1,11 @@
-# coding: utf-8import codecsf1 = codecs.open('data1.dat', 'r', 'ascii')  # data1.dat ã‚’å…¥åŠ›ã®ãŸã‚ã«openf2 = codecs.open('data2.dat', 'w', 'ascii')  # data2.dat ã‚’å‡ºåŠ›ã®ãŸã‚ã«openfor kk in f1: # 1è¡Œã”ã¨ã«èª­ã¿è¾¼ã¾ã‚Œã‚‹    ll = kk.rsplit(' ')  # ç©ºç™½ã‚’åŒºåˆ‡ã‚Šã¨ã—ã¦ãƒªã‚¹ãƒˆã«åˆ†å‰²    k1, k2 = float(ll[0]), float(ll[1])  # ãƒªã‚¹ãƒˆã®å„è¦ç´ ã‚’å®Ÿæ•°ã«å¤‰æ›    f2.write(str(k1**2) + ' ' + str(k2**2) + '\n')  # 2ä¹—å€¤ã¨ç©ºç™½ï¼Œæ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãè¾¼ã¿f1.close()  # data1.dat ã‚’ã‚¯ãƒ­ãƒ¼ã‚ºf2.close()  # data2.dat ã‚’ã‚¯ãƒ­ãƒ¼ã‚º
+# -*- coding: utf-8 -*-
+f1 = open('data1_utf8.dat', 'r')  # data1.dat ‚ğ“ü—Í‚Ì‚½‚ß‚Éopen
+f2 = open('data2.dat', 'w')  # data2.dat ‚ğo—Í‚Ì‚½‚ß‚Éopen
+content = f1.read()  # ƒtƒ@ƒCƒ‹‘S‚Ä‚ğstrƒ^ƒCƒv‚Å“Ç‚İ‚İ
+contents = content.split(';')  # ƒZƒ~ƒRƒƒ“‚Å‹æØ‚é
+for kk in contents:
+    k1, k2 = kk.split(',')  # ƒJƒ“ƒ}‚ğ‹æØ‚è‚Æ‚µ‚ÄƒŠƒXƒg‚É•ªŠ„
+    k1, k2 = int(k1), float(k2)  # Še—v‘f‚ğ”’l‚É•ÏŠ·
+    f2.write(str(k1) + ' ' + str(k2**2) + '\n')  # 2æ’l‚Æ‹ó”’C‰üsƒR[ƒh‚ğ‘‚«‚İ
+f1.close()  # data1.dat ‚ğƒNƒ[ƒY
+f2.close()  # data2.dat ‚ğƒNƒ[ƒY

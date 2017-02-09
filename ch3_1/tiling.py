@@ -104,7 +104,7 @@ def pattern1_1():
         for x in range(0, 8):
             c = y // 2 % 2 + x % 2
             U(R(D(I(0, y % 2 + x * 2 - 6, y * 2 - 5, c), 1, c), 1, c), 1, c)
-    turtle.mainloop()
+    turtle.done()
 
 
 def pattern1_2():
@@ -113,7 +113,7 @@ def pattern1_2():
             c = (x + y) % 2
             n = U(R(D(I(0, x * 2 - 8, y * 4 - 7, c), 1, c), 1, c), 1, c)
             D(L(U(U(n, 2, c), 3, c), 3, c + 1), 3, c + 1)
-    turtle.mainloop()
+    turtle.done()
 
 
 def pattern2_1():
@@ -121,12 +121,12 @@ def pattern2_1():
         for x in range(-2, 2):
             R(U(L(U(R(U(L(U(R(I(2 + y % 2, x * 4, y * 5))))))))))
             R(U(L(U(R(U(L(U(R(I(3 - y % 2, x * 4 + 2, y * 5))))))))))
-
+    turtle.done()
 
 def pattern2_2():
     S(R(Z(R(S(R(Z(R(S(R(Z(I(3, -6, -1)), 1)), 2), 3, 0, 1), 1), 3, 1, 0), 2)), 1))
     Z(R(S(R(Z(R(S(R(Z(R(S(I(2, -6,  0)), 3)), 2), 1, 0, 1), 3), 1, 1, 0), 2)), 3))
-    turtle.mainloop()
+    turtle.done()
 
 
 def pattern3():
@@ -134,6 +134,13 @@ def pattern3():
         for x in range(0, 3):
             C(C(C(I(0, x * 7 - 8, y * 7 - 3.5, 1), 3, 1), 3, 1), 3, 1)
             E(C(E(C(E(C(E(I(0, x * 7 - 7.5, y * 7 - 7, 1)), 3, 3)), 3, 3)), 3, 3))
-    turtle.mainloop()
+    turtle.done()
 
+#--------------
+
+#pattern1_1()
+#pattern1_2()
+#pattern2_1()
+#pattern2_2()
 pattern3()
+

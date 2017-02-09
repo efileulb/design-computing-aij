@@ -1,1 +1,4 @@
-import numpy as npa = np.array([[1, 2], [3, 4]])  # è¡Œåˆ—ã®å®šç¾©c = np.linalg.inv(a)  # é€†è¡Œåˆ—ã®è¨ˆç®—print(c)# [[-2.   1. ]#  [ 1.5 -0.5]]
+import numpy as np
+a = np.array([[1, 2], [3, 4]])  # s—ñ‚Ì’è‹`
+c = np.linalg.inv(a)  # ‹ts—ñ‚ÌŒvZ
+print(c)

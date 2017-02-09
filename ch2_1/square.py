@@ -1,11 +1,8 @@
-from rect import *  # rect.pyã®å†…å®¹ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹
+from rect import *  # rect.py‚Ì“à—e‚ğƒCƒ“ƒ|[ƒg‚·‚é
 
 
 class Square(Rectangle):
 
     def __init__(self, dx):
         self.dx = dx
-        self.dy = self.dx  # 2è¾ºã®é•·ã•ã‚’ç­‰ã—ãã™ã‚‹
-
-sq1 = Square(100)
-print('Area of sq1: ', sq1.area())
+        self.dy = self.dx  # 2•Ó‚Ì’·‚³‚ğ“™‚µ‚­‚·‚é

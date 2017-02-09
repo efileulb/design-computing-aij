@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from turtle import *  # æç”»ç’°å¢ƒ turtle ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
-# rose_window_recursion(å››è§’å½¢ã®ï¼”é ‚ç‚¹ï¼Œå†…åˆ†æ¯”ï¼Œç¹°ã‚Šè¿”ã—å›æ•°)
+from turtle import *  # •`‰æŠÂ‹« turtle ‚ğƒCƒ“ƒ|[ƒg
+# rose_window_recursion(lŠpŒ`‚Ì‚S’¸“_C“à•ª”äCŒJ‚è•Ô‚µ‰ñ”)
 
 
 def rose_window_recursion(points, ratio, depth):
@@ -15,8 +15,8 @@ def rose_window_recursion(points, ratio, depth):
 
 def deviding(p0, p1, r):
     return p0 * (1 - r) + p1 * r
-#-------------------- ä»¥ä¸‹ã¯è£œåŠ©çš„ãªé–¢æ•° --------------------------------------
-# rectangle(å››è§’å½¢ã®4é ‚ç‚¹ï¼‰
+#-------------------- ˆÈ‰º‚Í•â•“I‚ÈŠÖ” --------------------------------------
+# rectangle(lŠpŒ`‚Ì4’¸“_j
 
 
 def rectangle(points):
@@ -28,8 +28,8 @@ def rectangle(points):
     setpos(x2, y2)
     setpos(x3, y3)
     setpos(x0, y0)
-# 2ç‚¹ã®å†…åˆ†ç‚¹ã‚’æ±‚ã‚ã‚‹ï¼
-# deviding_point(ç‚¹A,ç‚¹B,å†…åˆ†æ¯”)
+# 2“_‚Ì“à•ª“_‚ğ‹‚ß‚éD
+# deviding_point(“_A,“_B,“à•ª”ä)
 
 
 def deviding_point(p0, p1, ratio):
@@ -39,8 +39,8 @@ def deviding_point(p0, p1, ratio):
     yr = deviding(y0, y1, ratio)
     return [xr, yr]
 
-# å››è§’å½¢ã®å„è¾ºã®å†…åˆ†ç‚¹ã‚’æ±‚ã‚ã‚‹ï¼
-# deviding_points(å››è§’å½¢ã®ï¼”é ‚ç‚¹ï¼Œå†…åˆ†æ¯”)
+# lŠpŒ`‚ÌŠe•Ó‚Ì“à•ª“_‚ğ‹‚ß‚éD
+# deviding_points(lŠpŒ`‚Ì‚S’¸“_C“à•ª”ä)
 
 
 def deviding_points(points, ratio):

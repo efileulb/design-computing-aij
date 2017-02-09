@@ -1,4 +1,5 @@
->>> list(DG.edges(data='type'))  # 繝ｪ繝ｳ繧ｯ縺ｫ莉倥￠繧峨ｌ縺ｦ縺�繧九ち繧､繝励ｒ陦ｨ遉ｺ縺吶ｋ
+>>> list(DG.edges(data='type'))  # リンクに付けられているタイプを表示する
 
-[('villa_savoye', 'house', {'type': 'is_a'}), ('roof', 'rain_cover', {'type': 'is_a'}), ('archi', 'roof', {'type': 'has_a'}),
- ('archi', 'artifact', {'type': 'is_a'}), ('house', 'archi', {'type': 'is_a'}), ('farnsworth', 'house', {'type': 'is_a'})]
+[('villa_savoye', 'house', 'is_a'), ('farnsworth', 'house', 'is_a'),
+ ('roof', 'rain_cover', 'is_a'), ('house', 'archi', 'is_a'),
+ ('archi', 'artifact', 'is_a'), ('archi', 'roof', 'has_a')]

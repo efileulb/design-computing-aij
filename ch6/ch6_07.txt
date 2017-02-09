@@ -1,3 +1,3 @@
 >>> from logic import *
->>> kb3 = FolKB()          # è¿°èªžè«–ç†ã«ã‚ˆã‚‹çŸ¥è­˜ãƒ™ãƒ¼ã‚¹ kb3 ã‚’ç”Ÿæˆã™ã‚‹
+>>> kb3 = FolKB()          # qŒê˜_—‚É‚æ‚é’mŽ¯ƒx[ƒX kb3 ‚ð¶¬‚·‚é
 >>> kb3.tell(expr('Architecture(YoyogiStadium)'))

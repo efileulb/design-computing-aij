@@ -4,26 +4,26 @@ import simpy
 class Person:
 
     def __init__(self, env, name):
-        self.env = env  # SimPyã®ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒ
-        self.name = name  # è‡ªåˆ†ã®åå‰
+        self.env = env  # SimPy‚ÌƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«
+        self.name = name  # ©•ª‚Ì–¼‘O
 
-    def behave(self):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
-        # SimPyã«è¿½åŠ ã™ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã¨ã—ã¦ï¼Œgeneratorã¨ã—ã¦ä½œæˆã™ã‚‹ã€‚
+    def behave(self):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
+        # SimPy‚É’Ç‰Á‚·‚éƒvƒƒZƒX‚Æ‚µ‚ÄCgenerator‚Æ‚µ‚Äì¬‚·‚éB
         while True:
-            print("time[%02d] My name is %s" % (self.env.now, self.name))
+            print('time[%02d] My name is %s' % (self.env.now, self.name))
             yield self.env.timeout(1)
 
 
 def simulation():
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
-    # ç’°å¢ƒã‚’è¨­å®š
-    env = simpy.Environment()  # SimPyã«ã‚ˆã‚‹ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒã‚’ä½œæˆ
-    # äººã‚’è¨­å®š
-    person = Person(env, "Yasuda")
-    env.process(person.behave())  # ãƒ—ãƒ­ã‚»ã‚¹ã¨ç™»éŒ²
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
+    # ŠÂ‹«‚ğİ’è
+    env = simpy.Environment()  # SimPy‚É‚æ‚éƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«‚ğì¬
+    # l‚ğİ’è
+    person = Person(env, 'Yasuda')
+    env.process(person.behave())  # ƒvƒƒZƒX‚Æ“o˜^
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
     env.run(until=5)
 
 
-if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
+if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
     simulation()

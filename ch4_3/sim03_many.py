@@ -5,86 +5,86 @@ RANDOM_SEED = 5
 class Person:
 
     def __init__(self, name, expected, ahead=None):
-        self.name = name  # è‡ªåˆ†ã®åå‰
-        self.ahead = ahead  # è‡ªåˆ†ã®å‰ã«ã„ã‚‹äºº
-        # ç”¨ã‚’è¶³ã™ã®ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’ã‚¢ãƒ¼ãƒ©ãƒ³åˆ†å¸ƒã§ä¸ãˆã‚‹ã€‚
+        self.name = name  # ©•ª‚Ì–¼‘O
+        self.ahead = ahead  # ©•ª‚Ì‘O‚É‚¢‚él
+        # —p‚ğ‘«‚·‚Ì‚É‚©‚©‚éŠÔ‚ğƒA[ƒ‰ƒ“•ª•z‚Å—^‚¦‚éB
         k = 3.0
-        lam_2 = k / expected  # æœŸå¾…å€¤E=k/lamã‚ˆã‚Šlam=k/E
+        lam_2 = k / expected  # Šú‘Ò’lE=k/lam‚æ‚èlam=k/E
         self.relieve_time = npr.gamma(k, 1. / lam_2)
-        self.queueing_time = 0  # ç´¯ç©ã®å¾…ã¡æ™‚é–“
-        self.status = "initial"  # è‡ªåˆ†ã®çŠ¶æ…‹ã‚’è¡¨ã™ã€‚Noneã¯å­˜åœ¨ã—ãªã„ã“ã¨ã‚’è¡¨ã™ã€‚
+        self.queueing_time = 0  # —İÏ‚Ì‘Ò‚¿ŠÔ
+        self.status = 'initial'  # ©•ª‚Ìó‘Ô‚ğ•\‚·BNone‚Í‘¶İ‚µ‚È‚¢‚±‚Æ‚ğ•\‚·B
 
-    def __repr__(self):  # print(self)ã‚’ã—ãŸæ™‚ã®å‡ºåŠ›ã‚’æ±ºã‚ã¦ãŠãã€‚
-        return "name: %s, status: %s" % (self.name, self.status)
+    def __repr__(self):  # print(self)‚ğ‚µ‚½‚Ìo—Í‚ğŒˆ‚ß‚Ä‚¨‚­B
+        return 'name: %s, status: %s' % (self.name, self.status)
 
-    def behave(self):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
-        ### ç’°å¢ƒã‹ã‚‰æƒ…å ±ã‚’å¾—ã‚‹ ###
-        # å‰ã«ã„ã‚‹äººã®çŠ¶æ…‹ã‚’è¦‹ã¦å¾—ã‚‹ã€‚ahead_statusã‚’æ±ºå®šã™ã‚‹ã€‚
+    def behave(self):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
+        ### ŠÂ‹«‚©‚çî•ñ‚ğ“¾‚é ###
+        # ‘O‚É‚¢‚él‚Ìó‘Ô‚ğŒ©‚Ä“¾‚éBahead_status‚ğŒˆ’è‚·‚éB
         if self.ahead != None:
             ahead_status = self.ahead.status
         else:
             ahead_status = 'leaving'
 
-        ### æ„æ€æ±ºå®šã‚’ã—ã¦è¡Œå‹•ã™ã‚‹ ###
-        if ahead_status != 'leaving':  # å‰ã«äººãŒã„ãŸã‚‰è¡Œåˆ—ã«ä¸¦ã¶ã€‚
+        ### ˆÓvŒˆ’è‚ğ‚µ‚Äs“®‚·‚é ###
+        if ahead_status != 'leaving':  # ‘O‚Él‚ª‚¢‚½‚çs—ñ‚É•À‚ÔB
             self.queueing_time += 1
-            self.status = "queueing for %d" % self.queueing_time
+            self.status = 'queueing for %d' % self.queueing_time
             print(self)
-        else:  # å‰ã«äººãŒã„ãªã‘ã‚Œã°ï¼Œç”¨ã‚’ãŸã™ã€‚
+        else:  # ‘O‚Él‚ª‚¢‚È‚¯‚ê‚ÎC—p‚ğ‚½‚·B
             self.relieve_time += -1
-            self.status = "relieving rest:%-2.2f" % self.relieve_time
+            self.status = 'relieving rest:%-2.2f' % self.relieve_time
             print(self)
-            if self.relieve_time <= 0:  # ã‚‚ã—ç”¨ã‚’è¶³ã—çµ‚ãˆãŸã‚‰ï¼Œé€€å‡ºã™ã‚‹ã€‚
-                self.status = "leaving"  # é€€å‡ºä¸­ã€‚
+            if self.relieve_time <= 0:  # ‚à‚µ—p‚ğ‘«‚µI‚¦‚½‚çC‘Şo‚·‚éB
+                self.status = 'leaving'  # ‘Şo’†B
                 print(self)
 
 
-def person_generator(expected):  # nextã§å‘¼ã³å‡ºã™ãŸã³ã«personã‚’ç”Ÿæˆ
+def person_generator(expected):  # next‚ÅŒÄ‚Ño‚·‚½‚Ñ‚Éperson‚ğ¶¬
     i = 0
     ahead = None
     while True: 
-        person = Person("person_%02d" % i, expected, ahead=ahead)
+        person = Person('person_%02d' % i, expected, ahead=ahead)
         ahead = person
         i += 1
-        yield person # yeildã¯ï¼Œæ¬¡ã«å‘¼ã°ã‚ŒãŸã¨ãã«ã¾ãŸã“ã®ä½ç½®ã‹ã‚‰å‡¦ç†ã•ã‚Œã‚‹ã€‚
+        yield person # yeild‚ÍCŸ‚ÉŒÄ‚Î‚ê‚½‚Æ‚«‚É‚Ü‚½‚±‚ÌˆÊ’u‚©‚çˆ—‚³‚ê‚éB
 
 
 def simulation(lam, mu, person_Num):
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
-    person_list_queueing = []  # ã‚·ã‚¹ãƒ†ãƒ å†…ã«ã„ã‚‹äººã®ãƒªã‚¹ãƒˆã€‚
-    person_list_worked = [] # ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã—ãŸäººã‚’ã¤ã‚ã“ã‚€ãƒªã‚¹ãƒˆ
-    gen = person_generator(1./mu) # ç”¨ã‚’è¶³ã™æ™‚é–“ã®æœŸå¾…å€¤=1/å˜ä½æ™‚é–“ã‚ãŸã‚Šã«ç”¨ã‚’è¶³ã™äººæ•°
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
+    person_list_queueing = []  # ƒVƒXƒeƒ€“à‚É‚¢‚él‚ÌƒŠƒXƒgB
+    person_list_worked = [] # ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“I—¹‚µ‚½l‚ğ‚Â‚ß‚±‚ŞƒŠƒXƒg
+    gen = person_generator(1./mu) # —p‚ğ‘«‚·ŠÔ‚ÌŠú‘Ò’l=1/’PˆÊŠÔ‚ ‚½‚è‚É—p‚ğ‘«‚·l”
     time = -1
 
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
-    # å…¨å“¡ãŒé€€å‡ºã™ã‚‹ã¾ã§ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã™ã‚‹ã€‚
-    while len(person_list_worked) < person_Num:  # æŒ‡å®šã—ãŸäººæ•°ãŒçµ‚äº†ã—ãŸã‚‰ãƒ«ãƒ¼ãƒ—çµ‚äº†
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
+    # ‘Sˆõ‚ª‘Şo‚·‚é‚Ü‚ÅƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ğ‚·‚éB
+    while len(person_list_worked) < person_Num:  # w’è‚µ‚½l”‚ªI—¹‚µ‚½‚çƒ‹[ƒvI—¹
         time += 1
-        print("time:%d, queue:%d" % (time, len(person_list_queueing)))
-        # å‡ºç¾ã®å‡¦ç†
-        num = npr.poisson(lam) # å˜ä½æ™‚é–“ã‚ãŸã‚Šã®åˆ°ç€äººæ•°ã®æœŸå¾…å€¤=åˆ°ç€ç‡(äºº)ã€‚
+        print('time:%d, queue:%d' % (time, len(person_list_queueing)))
+        # oŒ»‚Ìˆ—
+        num = npr.poisson(lam) # ’PˆÊŠÔ‚ ‚½‚è‚Ì“’…l”‚ÌŠú‘Ò’l=“’…—¦(l)B
         if num:
             for i in range(num):
-                person_list_queueing.append(next(gen))  # next(gen)ã§personã‚’ç”Ÿæˆ
+                person_list_queueing.append(next(gen))  # next(gen)‚Åperson‚ğ¶¬
 
-        # ã‚·ã‚¹ãƒ†ãƒ å†…ã«ã„ã‚‹äººãã‚Œãã‚Œã®è¡Œå‹•ã®å‡¦ç†
-        # pythonã®ä»•æ§˜ã§ï¼Œperson_listã®ãƒ«ãƒ¼ãƒ—ä¸­ã«ãƒªã‚¹ãƒˆã®å†…å®¹ã‚’å¤‰æ›´ã™ã‚‹ã¨
-        # äºˆæœŸã—ãªã„æŒ™å‹•ã‚’ç¤ºã™ã®ã§ï¼Œ[:]ã®ã‚¹ãƒ©ã‚¤ã‚¹ã§ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
-        for person in person_list_queueing[:]:  # ä¸€äººãšã¤è¡Œå‹•ã™ã‚‹
+        # ƒVƒXƒeƒ€“à‚É‚¢‚él‚»‚ê‚¼‚ê‚Ìs“®‚Ìˆ—
+        # python‚Ìd—l‚ÅCperson_list‚Ìƒ‹[ƒv’†‚ÉƒŠƒXƒg‚Ì“à—e‚ğ•ÏX‚·‚é‚Æ
+        # —\Šú‚µ‚È‚¢‹““®‚ğ¦‚·‚Ì‚ÅC[:]‚ÌƒXƒ‰ƒCƒX‚ÅƒRƒs[‚·‚éB
+        for person in person_list_queueing[:]:  # ˆêl‚¸‚Âs“®‚·‚é
             person.behave()
-            if person.status == "leaving":  # é€€å‡ºã«ãªã£ã¦ã„ã‚‹personã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å–ã‚Šé™¤ã
+            if person.status == 'leaving':  # ‘Şo‚É‚È‚Á‚Ä‚¢‚éperson‚ğƒŠƒXƒg‚©‚çæ‚èœ‚­
                 person_list_queueing.remove(person)
                 person_list_worked.append(person)
 
         if time > 100:
             break
 
-    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã¾ã¨ã‚ ###
-    print("report")
+    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“I—¹Œã‚Ü‚Æ‚ß ###
+    print('report')
     for person in person_list_worked:
-        print("name: %s, queueing time: %s" %
+        print('name: %s, queueing time: %s' %
               (person.name, person.queueing_time))
 
-if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
+if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
     npr.seed(RANDOM_SEED)
     simulation(lam=0.2, mu=0.2, person_Num=5)
