@@ -1,25 +1,25 @@
 class Person:
 
-    def __init__(self, name):  # ƒNƒ‰ƒX‚ªŒÄ‚Ño‚³‚ê‚½‚Æ‚«‚É”­“®iinitializejB
-        # __init__‚ÍPython‚ÅÅ‰‚©‚ç’è‹`‚³‚ê‚Ä‚¢‚éB
-        self.name = name  # ©•ª‚Ì–¼‘O
+    def __init__(self, name):  # ã‚¯ãƒ©ã‚¹ãŒå‘¼ã³å‡ºã•ã‚ŒãŸã¨ãã«ç™ºå‹•ï¼ˆinitializeï¼‰ã€‚
+        # __init__ã¯Pythonã§æœ€åˆã‹ã‚‰å®šç¾©ã•ã‚Œã¦ã„ã‚‹ã€‚
+        self.name = name  # è‡ªåˆ†ã®åå‰
 
-    def behave(self):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
-        # ©•ª‚Ì–¼‘O‚ğprint‚·‚é %s‚Ì‚Æ‚±‚ë‚Éself.name‚ğ‘ã“ü‚µ‚Ä‚¢‚éB
+    def behave(self):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
+        # è‡ªåˆ†ã®åå‰ã‚’printã™ã‚‹ %sã®ã¨ã“ã‚ã«self.nameã‚’ä»£å…¥ã—ã¦ã„ã‚‹ã€‚
         print('My name is %s' % self.name)
 
 
 def simulation():
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
-    person = Person("Yasuda")  # l‚ğİ’è
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
+    person = Person("Yasuda")  # äººã‚’è¨­å®š
     time = -1
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
-    while time < 3:  # ŠÔ‚ª3ˆÈã‚Ì‚Æ‚«‚ÉFalse‚Æ‚È‚Á‚Äƒ‹[ƒv‚ªI—¹‚·‚éB
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
+    while time < 3:  # æ™‚é–“ãŒ3ä»¥ä¸Šã®ã¨ãã«Falseã¨ãªã£ã¦ãƒ«ãƒ¼ãƒ—ãŒçµ‚äº†ã™ã‚‹ã€‚
         time += 1
         print('time:%d' % time)
-        person.behave()  # ƒƒ\ƒbƒhbehave‚ğÀs‚·‚é
-    else:  # whileƒ‹[ƒv‚ÌğŒ®‚ªFalse‚ğ•Ô‚µ‚½‚Æ‚«iwhileƒ‹[ƒvI—¹j‚É”­“®
+        person.behave()  # ãƒ¡ã‚½ãƒƒãƒ‰behaveã‚’å®Ÿè¡Œã™ã‚‹
+    else:  # whileãƒ«ãƒ¼ãƒ—ã®æ¡ä»¶å¼ãŒFalseã‚’è¿”ã—ãŸã¨ãï¼ˆwhileãƒ«ãƒ¼ãƒ—çµ‚äº†æ™‚ï¼‰ã«ç™ºå‹•
         print('time:%d, finished' % time)
 
-if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
+if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
     simulation()

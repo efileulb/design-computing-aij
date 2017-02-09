@@ -1,40 +1,40 @@
 import simpy
 import numpy.random as npr
 import matplotlib.pyplot as plt
-import sim13_many as mysim  # ©•ª‚Åì¬‚µ‚½ƒ‚ƒWƒ…[ƒ‹‚ğ“Ç‚İ‚İB
+import sim13_many as mysim  # è‡ªåˆ†ã§ä½œæˆã—ãŸãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€‚
 RANDOM_SEED = 5
 
 
-def monitor(env, toilet, data):  # ‹L˜^—p†
+def monitor(env, toilet, data):  # è¨˜éŒ²ç”¨ç´™
     while True:
         tup = [
-            env.now,  # Œ»İ
-            toilet.count,  # g—pl”
-            len(toilet.queue)  # s—ñl”
+            env.now,  # ç¾åœ¨æ™‚åˆ»
+            toilet.count,  # ä½¿ç”¨äººæ•°
+            len(toilet.queue)  # è¡Œåˆ—äººæ•°
         ]
         data.append(tup)
         yield env.timeout(1)
 
 
 def simulation(lambd=0.3, mu=0.2, capacity=1, until=100):
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
-    # ŠÂ‹«‚ğİ’è
-    env = simpy.Environment()  # SimPy‚É‚æ‚éƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«‚ğì¬
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
+    # ç’°å¢ƒã‚’è¨­å®š
+    env = simpy.Environment()  # SimPyã«ã‚ˆã‚‹ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒã‚’ä½œæˆ
     toilet = simpy.Resource(env, capacity=capacity)
-    # l‚ğoŒ»‚³‚¹‚éƒvƒƒZƒX‚Æ“o˜^ # –³ŒÀ•êW’c
+    # äººã‚’å‡ºç¾ã•ã›ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã¨ç™»éŒ² # ç„¡é™æ¯é›†å›£
     env.process(mysim.person_generator(env, toilet,
-                                       lambd, mu))  
-    # ‹L˜^—p†‚ğİ’è
-    data = []  # ‹L˜^—p
+                                       lambd, mu))
+    # è¨˜éŒ²ç”¨ç´™ã‚’è¨­å®š
+    data = []  # è¨˜éŒ²ç”¨
     env.process(monitor(env, toilet, data))
-    # ƒf[ƒ^‚ğİ’è
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
+    # ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
     env.run(until=until)
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“I—¹ ###
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº† ###
     print(data)
-    ### ‰Â‹‰» ###
-    x = [tup[0] for tup in data]  # 
-    y = [tup[2] for tup in data]  # ‘Ò‚¿l”
+    ### å¯è¦–åŒ– ###
+    x = [tup[0] for tup in data]  # æ™‚åˆ»
+    y = [tup[2] for tup in data]  # å¾…ã¡äººæ•°
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.bar(x, y, color='gray')
@@ -45,6 +45,6 @@ def simulation(lambd=0.3, mu=0.2, capacity=1, until=100):
     plt.show()
 
 
-if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
+if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
     npr.seed(RANDOM_SEED)
     simulation(lambd=1.0, mu=0.2, capacity=5, until=100)

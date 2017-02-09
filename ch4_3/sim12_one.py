@@ -6,43 +6,43 @@ RANDOM_SEED = 5
 class Person:
 
     def __init__(self, env, name, lam, mu):
-        self.env = env  # SimPy‚ÌƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«
-        self.name = name  # ©•ª‚Ì–¼‘O
-        #@“’…‚·‚é‚Ü‚Å‚ÌŠÔ‚ÌŠú‘Ò’l‚Í1/“’…—¦
+        self.env = env  # SimPyã®ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒ
+        self.name = name  # è‡ªåˆ†ã®åå‰
+        #ã€€åˆ°ç€ã™ã‚‹ã¾ã§ã®æ™‚é–“ã®æœŸå¾…å€¤ã¯1/åˆ°ç€ç‡
         self.arrive_time = npr.exponential(1. / lam)
-        # —p‚ğ‘«‚·‚Ì‚É‚©‚©‚éŠÔ‚ğƒA[ƒ‰ƒ“•ª•z‚Å—^‚¦‚éB
+        # ç”¨ã‚’è¶³ã™ã®ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’ã‚¢ãƒ¼ãƒ©ãƒ³åˆ†å¸ƒã§ä¸ãˆã‚‹ã€‚
         k = 3.0
-        lam_2 = k * mu # Šú‘Ò’l1/mu=k/lam‚æ‚èlam=k*mu
+        lam_2 = k * mu  # æœŸå¾…å€¤1/mu=k/lamã‚ˆã‚Šlam=k*mu
         self.relieve_time = npr.gamma(k, 1. / lam_2)
-        self.status = 'initial'  # ©•ª‚Ìó‘Ô‚ğ•\‚·B
+        self.status = 'initial'  # è‡ªåˆ†ã®çŠ¶æ…‹ã‚’è¡¨ã™ã€‚
 
-    def __repr__(self):  # print(self)‚ğ‚µ‚½‚Ìo—Í‚ğŒˆ‚ß‚Ä‚¨‚­B
+    def __repr__(self):  # print(self)ã‚’ã—ãŸæ™‚ã®å‡ºåŠ›ã‚’æ±ºã‚ã¦ãŠãã€‚
         return 'time: %6.2f, name: %s, status: %s' % (self.env.now, self.name, self.status)
 
-    def behave(self):  # 1ƒXƒeƒbƒv‚Ås‚¤Cˆê˜A‚Ìs“®B
-        # SimPy‚É’Ç‰Á‚·‚éƒvƒƒZƒX‚Æ‚µ‚ÄCgenerator‚Æ‚µ‚Äì¬‚·‚éB
-        # ©•ª‚Ì–¼‘O‚ğprint‚·‚é %s‚Ì‚Æ‚±‚ë‚Éself.name‚ğ‘ã“ü‚µ‚Ä‚¢‚éB
+    def behave(self):  # 1ã‚¹ãƒ†ãƒƒãƒ—ã§è¡Œã†ï¼Œä¸€é€£ã®è¡Œå‹•ã€‚
+        # SimPyã«è¿½åŠ ã™ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã¨ã—ã¦ï¼Œgeneratorã¨ã—ã¦ä½œæˆã™ã‚‹ã€‚
+        # è‡ªåˆ†ã®åå‰ã‚’printã™ã‚‹ %sã®ã¨ã“ã‚ã«self.nameã‚’ä»£å…¥ã—ã¦ã„ã‚‹ã€‚
         self.status = 'arrival'
-        print(self)       
+        print(self)
         yield self.env.timeout(self.arrive_time)
         self.status = 'relieving'
         print(self)
         yield self.env.timeout(self.relieve_time)
-        self.status = 'leaving'  # ‘Şo’†B
+        self.status = 'leaving'  # é€€å‡ºä¸­ã€‚
         print(self)
 
 
 def simulation(lam, mu):
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“€”õ ###
-    # ŠÂ‹«‚ğİ’è
-    env = simpy.Environment()  # SimPy‚É‚æ‚éƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠÂ‹«‚ğì¬
-    # l‚ğİ’è
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æº–å‚™ ###
+    # ç’°å¢ƒã‚’è¨­å®š
+    env = simpy.Environment()  # SimPyã«ã‚ˆã‚‹ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç’°å¢ƒã‚’ä½œæˆ
+    # äººã‚’è¨­å®š
     person = Person(env, 'Yasuda', lam, mu)
-    env.process(person.behave())  # ƒvƒƒZƒX‚Æ“o˜^
-    ### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn ###
+    env.process(person.behave())  # ãƒ—ãƒ­ã‚»ã‚¹ã¨ç™»éŒ²
+    ### ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ ###
     env.run(until=100)
 
 
-if __name__ == '__main__':  # ‚±‚ÌƒXƒNƒŠƒvƒg©‘Ì‚ªÀs‚³‚ê‚½‚Æ‚«‚É‚Ì‚İˆÈ‰º‚ğÀs
+if __name__ == '__main__':  # ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆè‡ªä½“ãŒå®Ÿè¡Œã•ã‚ŒãŸã¨ãã«ã®ã¿ä»¥ä¸‹ã‚’å®Ÿè¡Œ
     npr.seed(RANDOM_SEED)
     simulation(1.0/30.0, 1/5.0)
