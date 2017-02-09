@@ -5,4 +5,4 @@
 .DS_Store
 .python-version
 __pycache__/
-/test/*
+test/
