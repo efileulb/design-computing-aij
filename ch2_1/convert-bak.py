@@ -10,3 +10,4 @@ for kk in jj:
     f2.write(str(k1**2) + ' ' + str(k2**2) + '\n')  # 2乗値と空白，改行コードを書き込み
 f1.close()  # data1.dat をクローズ
 f2.close()  # data2.dat をクローズ
+
