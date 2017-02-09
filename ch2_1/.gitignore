@@ -1,7 +1,0 @@
-*.py~
-*.pyc
-*.txt~
-*.csv~
-*.bak
-*.bak
-__pycache__/
