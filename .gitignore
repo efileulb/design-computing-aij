@@ -4,3 +4,4 @@
 *.csv~
 *.bak
 *.bak
+*/__pycache__/*
