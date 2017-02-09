@@ -4,11 +4,6 @@
 *.csv~
 *.bak
 *.bak
+.DS_Store
+.python-version
 __pycache__/
-/__pycache__/*
-**/__pycache__/*
-/**/__pycache__/*
-**/**/__pycache__/*
-/**/**/__pycache__/*
-*/__pycache__/*
-/*/__pycache__/*
