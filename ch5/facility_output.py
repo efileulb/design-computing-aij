@@ -1,7 +1,7 @@
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
-reader = csv.reader(open('out2.csv', 'rb'))
+reader = csv.reader(open('out2.csv', 'r'))
 f_history = []
 x1_history = []
 x2_history = []

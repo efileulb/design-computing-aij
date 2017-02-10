@@ -23,7 +23,7 @@ A0 = np.array([3000.0, 3000.0])
 def f(A):
     cons = g(A)
     return a1 * A[0] + a2 * A[1] + penalty * (max(-cons[0], 0) + max(-cons[1], 0) +
-           max(-cons[2], 0) + max(-cons[3], 0) + max(-cons[4], 0))
+                                              max(-cons[2], 0) + max(-cons[3], 0) + max(-cons[4], 0))
 
 
 def g(A):

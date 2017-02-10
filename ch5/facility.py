@@ -1,20 +1,20 @@
-import numpy as np  # ƒ‚ƒWƒ…[ƒ‹numpy‚ğnp‚Æ‚¢‚¤–¼‘O‚Å“Ç‚İ‚İ
-import csv  # ƒ‚ƒWƒ…[ƒ‹csv‚Ì“Ç‚İ‚İ
-from scipy import optimize  # scipy“à‚Ìoptimizeƒ‚ƒWƒ…[ƒ‹‚ğ“Ç‚İ‚İ
-filename = 'out2'  # o—Íƒtƒ@ƒCƒ‹–¼
-writer = csv.writer(open(filename + '.csv', 'w'))  # o—Í‚·‚écsvƒtƒ@ƒCƒ‹‚Ì¶¬
-writer.writerow(['step', 'f(x)', 'x1', 'x2'])  # csvƒtƒ@ƒCƒ‹‚Ö‚Ìƒ‰ƒxƒ‹‚Ì‘‚«‚İ
+import numpy as np  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«numpyã‚’npã¨ã„ã†åå‰ã§èª­ã¿è¾¼ã¿
+import csv  # ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«csvã®èª­ã¿è¾¼ã¿
+from scipy import optimize  # scipyå†…ã®optimizeãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã¿
+filename = 'out2'  # å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
+writer = csv.writer(open(filename + '.csv', 'w', newline=''))  # å‡ºåŠ›ã™ã‚‹csvãƒ•ã‚¡ã‚¤ãƒ«ã®ç”Ÿæˆ
+writer.writerow(['step', 'f(x)', 'x1', 'x2'])  # csvãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ©ãƒ™ãƒ«ã®æ›¸ãè¾¼ã¿
 
 
-def f(x):  # –Ú“IŠÖ”‚Ì’è‹`
+def f(x):  # ç›®çš„é–¢æ•°ã®å®šç¾©
     return ((2 - x[0])**2 + (4 - x[1])**2)**0.5 + ((3 - x[0])**2 + (2 - x[1])**2)**0.5
 
 
-def h(x):  # §–ñğŒ‚Ì’è‹`(>0)
+def g(x):  # åˆ¶ç´„æ¡ä»¶ã®å®šç¾©(>0)
     return np.array([-2 * x[0] - 3 * x[1] + 7, x[0], -x[0] + 2, x[1], -x[1] + 2])
 
 
-def callbackF(x):  # Å“K‰»‚ÌŠeƒXƒeƒbƒv‚ÅŒvZŒ‹‰Ê‚ğ‹L˜^‚·‚éŠÖ”
+def callbackF(x):  # æœ€é©åŒ–ã®å„ã‚¹ãƒ†ãƒƒãƒ—ã§è¨ˆç®—çµæœã‚’è¨˜éŒ²ã™ã‚‹é–¢æ•°
     global step
     step += 1
     writer.writerow([step, f(x), x[0], x[1]])
@@ -23,4 +23,4 @@ def callbackF(x):  # Å“K‰»‚ÌŠeƒXƒeƒbƒv‚ÅŒvZŒ‹‰Ê‚ğ‹L˜^‚·‚éŠÖ”
 x = np.array([0.0, 0.0])
 step = 0
 writer.writerow([step, f(x), x[0], x[1]])
-optimize.fmin_slsqp(f, x, f_ieqcons=g, iprint=2, callback=callbackF)  # ’€Ÿ2ŸŒv‰æ–@
+optimize.fmin_slsqp(f, x, f_ieqcons=g, iprint=2, callback=callbackF)  # é€æ¬¡äºŒæ¬¡è¨ˆç”»æ³•

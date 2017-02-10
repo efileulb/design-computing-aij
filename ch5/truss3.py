@@ -5,7 +5,8 @@ import math
 
 def input(fname):  # トラスの読み込み
     reader = csv.reader(open(fname, 'r'))
-    r, ij, A, E, fix, p = [], [], [], [], [], []  # 節点座標,要素節点関係,断面積,ヤング係数,境界条件,荷重ベクトル
+    # 節点座標,要素節点関係,断面積,ヤング係数,境界条件,荷重ベクトル
+    r, ij, A, E, fix, p = [], [], [], [], [], []
     for row in reader:  # 節点の読み込み
         break  # 先頭行は読み飛ばし
     for row in reader:
