@@ -12,7 +12,7 @@ class Person:
 
 def simulation():
     ### シミュレーション準備 ###
-    person = Person("Unix_CRLF")  # 人を設定
+    person = Person("shiftjis_CRLF")  # 人を設定
     time = -1
     ### シミュレーション開始 ###
     while time < 3:  # 時間が3以上のときにFalseとなってループが終了する。
