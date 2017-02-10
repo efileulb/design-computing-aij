@@ -1,0 +1,51 @@
+\documentclass[]{corona-b5-1.1}%tombow
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{makeidx,bigstrut,multirow,fancybox,color,amsmath,framed,amsthm}
+
+%%%begin yasuda definition%%%
+\usepackage{verbatim, setspace, ascmac}
+\usepackage{listings, jlisting}%jlistingsはtexliveにはないので，ダウンロード必要。
+%% https://osdn.net/projects/mytexpert/downloads/26068/jlisting.sty.bz2/
+\lstset{%
+	language={Python},
+	basicstyle={\small},%
+	identifierstyle={\small},%
+	commentstyle={\small\itshape},%
+	keywordstyle={\small\bfseries},%
+	ndkeywordstyle={\small},%
+	stringstyle={\small\ttfamily},
+	frame={tb},
+	breaklines=true,
+	columns=[l]{fullflexible},%
+	numbers=left,%
+	xrightmargin=0zw,%
+	xleftmargin=3zw,%
+	numberstyle={\scriptsize},%
+	stepnumber=1,
+	numbersep=1zw,%
+	lineskip=-0.5ex%
+}
+
+%%%end yasuda definishon%%%
+
+
+\begin{document}
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+
+\section{latex テスト}
+
+\subsection{listings.sty, jlistingを用いたソースコードの参照}
+次のコードのように直接記述することができる
+\begin{lstlisting}[caption=test, label=test]
+Print("Hello World!")
+def add(a, b):
+    return a + b
+c = add(1, 2)
+\end{lstlisting}
+
+もしくは，\verb|\lstinputlisting{filepath}|を用いて外部ファイルを参照することができる。
+\lstinputlisting[caption=sim01\_simple.py, label=sim01]{../../ch4_3/sim01_simple.py}
+
+\end{document}
